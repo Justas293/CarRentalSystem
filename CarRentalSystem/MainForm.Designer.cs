@@ -68,7 +68,7 @@
             // Equipment_label
             // 
             this.Equipment_label.AutoSize = true;
-            this.Equipment_label.Location = new System.Drawing.Point(350, 273);
+            this.Equipment_label.Location = new System.Drawing.Point(25, 426);
             this.Equipment_label.Name = "Equipment_label";
             this.Equipment_label.Size = new System.Drawing.Size(57, 13);
             this.Equipment_label.TabIndex = 3;
@@ -90,19 +90,20 @@
             this.Examplars_listBox.Name = "Examplars_listBox";
             this.Examplars_listBox.Size = new System.Drawing.Size(624, 225);
             this.Examplars_listBox.TabIndex = 5;
+            this.Examplars_listBox.SelectedIndexChanged += new System.EventHandler(this.Examplars_listBox_SelectedIndexChanged);
             // 
             // Rents_listBox
             // 
             this.Rents_listBox.FormattingEnabled = true;
             this.Rents_listBox.Location = new System.Drawing.Point(26, 289);
             this.Rents_listBox.Name = "Rents_listBox";
-            this.Rents_listBox.Size = new System.Drawing.Size(312, 134);
+            this.Rents_listBox.Size = new System.Drawing.Size(716, 134);
             this.Rents_listBox.TabIndex = 6;
             // 
             // Equipment_listBox
             // 
             this.Equipment_listBox.FormattingEnabled = true;
-            this.Equipment_listBox.Location = new System.Drawing.Point(353, 289);
+            this.Equipment_listBox.Location = new System.Drawing.Point(26, 441);
             this.Equipment_listBox.Name = "Equipment_listBox";
             this.Equipment_listBox.Size = new System.Drawing.Size(291, 134);
             this.Equipment_listBox.TabIndex = 7;
@@ -111,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 561);
+            this.ClientSize = new System.Drawing.Size(821, 600);
             this.Controls.Add(this.Equipment_listBox);
             this.Controls.Add(this.Rents_listBox);
             this.Controls.Add(this.Examplars_listBox);

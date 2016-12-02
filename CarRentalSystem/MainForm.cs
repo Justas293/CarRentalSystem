@@ -27,6 +27,7 @@ namespace CarRentalSystem
         {
             PopulateCars();
             PopulateExamplars();
+            PopulateRents();
         }
 
         private void PopulateCars()
@@ -78,11 +79,55 @@ namespace CarRentalSystem
             }
         }
 
-        
+        private void PopulateRents()
+        {
+            string query = "SELECT * FROM Rent, Examplar " +
+                           "WHERE Rent.ExamplarVIN = Examplar.VIN " +
+                           "AND Examplar.VIN = @ExamplarVIN";
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            {
+                
+                if (!String.IsNullOrEmpty((string)Examplars_listBox.SelectedValue))
+                {
+                    command.Parameters.AddWithValue("@ExamplarVIN", Examplars_listBox.SelectedValue);
 
+                    DataTable rentTable = new DataTable();
+                    adapter.Fill(rentTable);
+                    
+                    var results = (from row in rentTable.AsEnumerable()
+                                   select new
+                                   {
+                                       ExamplarVIN = row.Field<string>("ExamplarVIN"),
+                                       Pick_up = row.Field<DateTime>("Pick-up"),
+                                       Return = row.Field<DateTime>("Return"),
+                                       FullRow = "VIN: "
+                                       + row.Field<string>("ExamplarVIN") + "       Date to pick up: "
+                                       + row.Field<DateTime>("Pick-up") + "     Date to return: "
+                                       + row.Field<DateTime>("Return")
+                                   }).ToList();
+                    
+                    Rents_listBox.DataSource = results;
+                    }
+                Rents_listBox.DisplayMember = "FullRow";
+                Rents_listBox.ValueMember = "Nr";
+            }
+        }
         private void Cars_listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateExamplars();
+            PopulateRents();
+            if (String.IsNullOrEmpty((string)Examplars_listBox.SelectedValue))
+            {
+                Rents_listBox.DataSource = null;
+                Rents_listBox.Items.Clear();
+            }
+        }
+
+        private void Examplars_listBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateRents();
         }
     }
 }
