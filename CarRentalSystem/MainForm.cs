@@ -27,6 +27,7 @@ namespace CarRentalSystem
         {
             PopulateCars();
             PopulateExamplars();
+            PopulateEquipment();
             PopulateRents();
         }
 
@@ -114,6 +115,32 @@ namespace CarRentalSystem
                 Rents_listBox.ValueMember = "Nr";
             }
         }
+
+        private void PopulateEquipment()
+        {
+            string query = "SELECT Equipment.Title FROM Equipment, UseEquipment, Examplar " +
+                           "WHERE UseEquipment.ExamplarVIN = Examplar.VIN " +
+                           "AND UseEquipment.EquipmentID = Equipment.ID " +
+                           "AND UseEquipment.ExamplarVIN = @ExamplarVIN";
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            {
+                if (!String.IsNullOrEmpty((string)Examplars_listBox.SelectedValue))
+                {
+                    command.Parameters.AddWithValue("@ExamplarVIN", Examplars_listBox.SelectedValue);
+
+                    DataTable equipmentTable = new DataTable();
+                    adapter.Fill(equipmentTable);
+
+                    Equipment_listBox.DataSource = equipmentTable;
+                }
+                Equipment_listBox.DisplayMember = "Title";
+                Equipment_listBox.ValueMember = "ID";
+
+            }
+        }
+            
         private void Cars_listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateExamplars();
@@ -123,11 +150,22 @@ namespace CarRentalSystem
                 Rents_listBox.DataSource = null;
                 Rents_listBox.Items.Clear();
             }
+            if (String.IsNullOrEmpty((string)Examplars_listBox.SelectedValue))
+            {
+                Equipment_listBox.DataSource = null;
+                Equipment_listBox.Items.Clear();
+            }
         }
 
         private void Examplars_listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateRents();
+            PopulateEquipment();
+        }
+
+        private void Rents_listBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateEquipment();
         }
     }
 }

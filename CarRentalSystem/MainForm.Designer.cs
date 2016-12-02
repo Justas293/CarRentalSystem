@@ -99,6 +99,7 @@
             this.Rents_listBox.Name = "Rents_listBox";
             this.Rents_listBox.Size = new System.Drawing.Size(716, 134);
             this.Rents_listBox.TabIndex = 6;
+            this.Rents_listBox.SelectedIndexChanged += new System.EventHandler(this.Rents_listBox_SelectedIndexChanged);
             // 
             // Equipment_listBox
             // 
