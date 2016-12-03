@@ -69,8 +69,8 @@ namespace CarRentalSystem
                                    FullRow = "VIN: " 
                                    + row.Field<string>("VIN") + "       Year: " 
                                    + row.Field<int>("Year") + "     Color: " 
-                                   + row.Field<string>("Color") + "     Fuel cost: "
-                                   + row.Field<decimal>("Fuel_cost")
+                                   + row.Field<string>("Color") + "     "
+                                   + row.Field<decimal>("Fuel_cost") + " l / 100km"
                                }).ToList();
 
                 Examplars_listBox.DataSource = results;
@@ -105,7 +105,7 @@ namespace CarRentalSystem
                                        Return = row.Field<DateTime>("Return"),
                                        FullRow = "VIN: "
                                        + row.Field<string>("ExamplarVIN") + "       Date to pick up: "
-                                       + row.Field<DateTime>("Pick-up") + "     Date to return: "
+                                       + row.Field<DateTime>("Pick-up") + " - "
                                        + row.Field<DateTime>("Return")
                                    }).ToList();
                     
@@ -166,6 +166,11 @@ namespace CarRentalSystem
         private void Rents_listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateEquipment();
+        }
+
+        private void Equipment_label_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
