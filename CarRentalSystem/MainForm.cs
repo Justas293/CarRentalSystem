@@ -313,5 +313,15 @@ namespace CarRentalSystem
             }
             PopulateExamplars();
         }
+
+        private void Rentbutton_Click(object sender, EventArgs e)
+        {
+            Examplars_listBox.ValueMember = "VIN";
+            using (RentCarForm rentcarform = new RentCarForm((string)Examplars_listBox.SelectedValue))
+            {
+                rentcarform.ShowDialog();
+            }
+            PopulateExamplars();
+        }
     }
 }

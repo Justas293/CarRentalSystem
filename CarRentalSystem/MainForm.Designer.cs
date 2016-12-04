@@ -187,6 +187,7 @@
             this.Rentbutton.TabIndex = 8;
             this.Rentbutton.Text = "Rent car";
             this.Rentbutton.UseVisualStyleBackColor = true;
+            this.Rentbutton.Click += new System.EventHandler(this.Rentbutton_Click);
             // 
             // ClientstabPage
             // 
