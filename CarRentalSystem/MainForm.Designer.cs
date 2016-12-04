@@ -54,6 +54,10 @@
             this.AllEquipmentlistBox = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.FindEquipmentbutton = new System.Windows.Forms.Button();
+            this.RemoveClientbutton = new System.Windows.Forms.Button();
+            this.UpdateClientbutton = new System.Windows.Forms.Button();
+            this.AddCarButton = new System.Windows.Forms.Button();
+            this.AddExamplarButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.MaintabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
@@ -146,6 +150,8 @@
             // 
             // MaintabPage
             // 
+            this.MaintabPage.Controls.Add(this.AddExamplarButton);
+            this.MaintabPage.Controls.Add(this.AddCarButton);
             this.MaintabPage.Controls.Add(this.Infobutton);
             this.MaintabPage.Controls.Add(this.Rentbutton);
             this.MaintabPage.Controls.Add(this.labelCars);
@@ -184,6 +190,8 @@
             // 
             // ClientstabPage
             // 
+            this.ClientstabPage.Controls.Add(this.UpdateClientbutton);
+            this.ClientstabPage.Controls.Add(this.RemoveClientbutton);
             this.ClientstabPage.Controls.Add(this.RemoveRentbutton);
             this.ClientstabPage.Controls.Add(this.ClientsRentlabel);
             this.ClientstabPage.Controls.Add(this.RentslistBox2);
@@ -203,7 +211,7 @@
             this.RemoveRentbutton.Name = "RemoveRentbutton";
             this.RemoveRentbutton.Size = new System.Drawing.Size(208, 32);
             this.RemoveRentbutton.TabIndex = 4;
-            this.RemoveRentbutton.Text = "Remove";
+            this.RemoveRentbutton.Text = "Remove rent";
             this.RemoveRentbutton.UseVisualStyleBackColor = true;
             // 
             // ClientsRentlabel
@@ -322,6 +330,44 @@
             this.FindEquipmentbutton.UseVisualStyleBackColor = true;
             this.FindEquipmentbutton.Click += new System.EventHandler(this.FindEquipmentbutton_Click);
             // 
+            // RemoveClientbutton
+            // 
+            this.RemoveClientbutton.Location = new System.Drawing.Point(158, 203);
+            this.RemoveClientbutton.Name = "RemoveClientbutton";
+            this.RemoveClientbutton.Size = new System.Drawing.Size(108, 32);
+            this.RemoveClientbutton.TabIndex = 5;
+            this.RemoveClientbutton.Text = "Remove client";
+            this.RemoveClientbutton.UseVisualStyleBackColor = true;
+            // 
+            // UpdateClientbutton
+            // 
+            this.UpdateClientbutton.Location = new System.Drawing.Point(26, 203);
+            this.UpdateClientbutton.Name = "UpdateClientbutton";
+            this.UpdateClientbutton.Size = new System.Drawing.Size(126, 32);
+            this.UpdateClientbutton.TabIndex = 6;
+            this.UpdateClientbutton.Text = "Update information...";
+            this.UpdateClientbutton.UseVisualStyleBackColor = true;
+            // 
+            // AddCarButton
+            // 
+            this.AddCarButton.Location = new System.Drawing.Point(12, 350);
+            this.AddCarButton.Name = "AddCarButton";
+            this.AddCarButton.Size = new System.Drawing.Size(213, 41);
+            this.AddCarButton.TabIndex = 10;
+            this.AddCarButton.Text = "Add new car...";
+            this.AddCarButton.UseVisualStyleBackColor = true;
+            this.AddCarButton.Click += new System.EventHandler(this.AddCarButton_Click);
+            // 
+            // AddExamplarButton
+            // 
+            this.AddExamplarButton.Location = new System.Drawing.Point(14, 406);
+            this.AddExamplarButton.Name = "AddExamplarButton";
+            this.AddExamplarButton.Size = new System.Drawing.Size(209, 42);
+            this.AddExamplarButton.TabIndex = 11;
+            this.AddExamplarButton.Text = "Add examplar...";
+            this.AddExamplarButton.UseVisualStyleBackColor = true;
+            this.AddExamplarButton.Click += new System.EventHandler(this.AddExamplarButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -370,6 +416,10 @@
         private System.Windows.Forms.Button RemoveRentbutton;
         private System.Windows.Forms.Button Infobutton;
         private System.Windows.Forms.Button FindEquipmentbutton;
+        private System.Windows.Forms.Button UpdateClientbutton;
+        private System.Windows.Forms.Button RemoveClientbutton;
+        private System.Windows.Forms.Button AddCarButton;
+        private System.Windows.Forms.Button AddExamplarButton;
     }
 }
 

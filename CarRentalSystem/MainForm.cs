@@ -63,19 +63,19 @@ namespace CarRentalSystem
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {
                 ClientslistBox.ValueMember = "ID";
-                    var results_rents = (from rent in context.Rents
-                                         where rent.ClientID == (int)ClientslistBox.SelectedValue
-                                         select new
-                                         {
-                                             Nr = rent.Nr,
-                                             ExamplarVIN = rent.ExamplarVIN,
-                                             Pick_up = rent.Pick_up,
-                                             Return = rent.Return,
-                                             FullRow = "VIN: "
-                                             + rent.ExamplarVIN + "       Date to pick up: "
-                                             + rent.Pick_up + " - "
-                                             + rent.Return
-                                         }).ToList();
+                var results_rents = (from rent in context.Rents
+                                     where rent.ClientID == (int)ClientslistBox.SelectedValue
+                                     select new
+                                     {
+                                         Nr = rent.Nr,
+                                         ExamplarVIN = rent.ExamplarVIN,
+                                         Pick_up = rent.Pick_up,
+                                         Return = rent.Return,
+                                         FullRow = "VIN: "
+                                         + rent.ExamplarVIN + "       Date to pick up: "
+                                         + rent.Pick_up + " - "
+                                         + rent.Return
+                                     }).ToList();
 
                     RentslistBox2.DataSource = results_rents;
                     RentslistBox2.DisplayMember = "FullRow";
@@ -86,7 +86,7 @@ namespace CarRentalSystem
         
         }
 
-        private void PopulateEquipmentTab()
+        private void PopulateEquipmentTab() //Entity framework
         {
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {
@@ -293,6 +293,25 @@ namespace CarRentalSystem
         private void ClientslistBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateClientRents();
+        }
+
+        private void AddCarButton_Click(object sender, EventArgs e)
+        {
+            using (AddCarForm addcarform = new AddCarForm())
+            {
+                addcarform.ShowDialog();
+            }
+            PopulateCars();
+        }
+
+        private void AddExamplarButton_Click(object sender, EventArgs e)
+        {
+            Cars_listBox.ValueMember = "ID";
+            using (AddExamplarForm addexamplarform = new AddExamplarForm((int)Cars_listBox.SelectedValue))
+            {
+                addexamplarform.ShowDialog();
+            }
+            PopulateExamplars();
         }
     }
 }
