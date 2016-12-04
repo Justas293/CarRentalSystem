@@ -38,21 +38,22 @@
             this.Equipment_listBox = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.MaintabPage = new System.Windows.Forms.TabPage();
-            this.ClientstabPage = new System.Windows.Forms.TabPage();
-            this.EquipmenttabPage = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.ClientslistBox = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.RentslistBox2 = new System.Windows.Forms.ListBox();
-            this.ClientsRentlabel = new System.Windows.Forms.Label();
-            this.AllEquipmentlistBox = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.AddNewEquipmentbutton = new System.Windows.Forms.Button();
-            this.RemoveEquipmentbutton = new System.Windows.Forms.Button();
-            this.UpdateEquipmentbutton = new System.Windows.Forms.Button();
-            this.RemoveRentbutton = new System.Windows.Forms.Button();
-            this.Rentbutton = new System.Windows.Forms.Button();
             this.Infobutton = new System.Windows.Forms.Button();
+            this.Rentbutton = new System.Windows.Forms.Button();
+            this.ClientstabPage = new System.Windows.Forms.TabPage();
+            this.RemoveRentbutton = new System.Windows.Forms.Button();
+            this.ClientsRentlabel = new System.Windows.Forms.Label();
+            this.RentslistBox2 = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ClientslistBox = new System.Windows.Forms.ListBox();
+            this.EquipmenttabPage = new System.Windows.Forms.TabPage();
+            this.UpdateEquipmentbutton = new System.Windows.Forms.Button();
+            this.RemoveEquipmentbutton = new System.Windows.Forms.Button();
+            this.AddNewEquipmentbutton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.AllEquipmentlistBox = new System.Windows.Forms.ListBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.FindEquipmentbutton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.MaintabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
@@ -163,6 +164,24 @@
             this.MaintabPage.Text = "Main";
             this.MaintabPage.UseVisualStyleBackColor = true;
             // 
+            // Infobutton
+            // 
+            this.Infobutton.Location = new System.Drawing.Point(230, 239);
+            this.Infobutton.Name = "Infobutton";
+            this.Infobutton.Size = new System.Drawing.Size(101, 38);
+            this.Infobutton.TabIndex = 9;
+            this.Infobutton.Text = "More info...";
+            this.Infobutton.UseVisualStyleBackColor = true;
+            // 
+            // Rentbutton
+            // 
+            this.Rentbutton.Location = new System.Drawing.Point(12, 239);
+            this.Rentbutton.Name = "Rentbutton";
+            this.Rentbutton.Size = new System.Drawing.Size(212, 38);
+            this.Rentbutton.TabIndex = 8;
+            this.Rentbutton.Text = "Rent car";
+            this.Rentbutton.UseVisualStyleBackColor = true;
+            // 
             // ClientstabPage
             // 
             this.ClientstabPage.Controls.Add(this.RemoveRentbutton);
@@ -178,8 +197,52 @@
             this.ClientstabPage.Text = "Clients";
             this.ClientstabPage.UseVisualStyleBackColor = true;
             // 
+            // RemoveRentbutton
+            // 
+            this.RemoveRentbutton.Location = new System.Drawing.Point(575, 203);
+            this.RemoveRentbutton.Name = "RemoveRentbutton";
+            this.RemoveRentbutton.Size = new System.Drawing.Size(208, 32);
+            this.RemoveRentbutton.TabIndex = 4;
+            this.RemoveRentbutton.Text = "Remove";
+            this.RemoveRentbutton.UseVisualStyleBackColor = true;
+            // 
+            // ClientsRentlabel
+            // 
+            this.ClientsRentlabel.AutoSize = true;
+            this.ClientsRentlabel.Location = new System.Drawing.Point(269, 21);
+            this.ClientsRentlabel.Name = "ClientsRentlabel";
+            this.ClientsRentlabel.Size = new System.Drawing.Size(59, 13);
+            this.ClientsRentlabel.TabIndex = 3;
+            this.ClientsRentlabel.Text = "Client rents";
+            // 
+            // RentslistBox2
+            // 
+            this.RentslistBox2.FormattingEnabled = true;
+            this.RentslistBox2.Location = new System.Drawing.Point(272, 37);
+            this.RentslistBox2.Name = "RentslistBox2";
+            this.RentslistBox2.Size = new System.Drawing.Size(511, 160);
+            this.RentslistBox2.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Clients";
+            // 
+            // ClientslistBox
+            // 
+            this.ClientslistBox.FormattingEnabled = true;
+            this.ClientslistBox.Location = new System.Drawing.Point(26, 37);
+            this.ClientslistBox.Name = "ClientslistBox";
+            this.ClientslistBox.Size = new System.Drawing.Size(240, 160);
+            this.ClientslistBox.TabIndex = 0;
+            // 
             // EquipmenttabPage
             // 
+            this.EquipmenttabPage.Controls.Add(this.FindEquipmentbutton);
             this.EquipmenttabPage.Controls.Add(this.UpdateEquipmentbutton);
             this.EquipmenttabPage.Controls.Add(this.RemoveEquipmentbutton);
             this.EquipmenttabPage.Controls.Add(this.AddNewEquipmentbutton);
@@ -192,56 +255,35 @@
             this.EquipmenttabPage.Text = "Equipment";
             this.EquipmenttabPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // UpdateEquipmentbutton
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(789, 505);
-            this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.UpdateEquipmentbutton.Location = new System.Drawing.Point(283, 105);
+            this.UpdateEquipmentbutton.Name = "UpdateEquipmentbutton";
+            this.UpdateEquipmentbutton.Size = new System.Drawing.Size(151, 31);
+            this.UpdateEquipmentbutton.TabIndex = 4;
+            this.UpdateEquipmentbutton.Text = "Update";
+            this.UpdateEquipmentbutton.UseVisualStyleBackColor = true;
+            this.UpdateEquipmentbutton.Click += new System.EventHandler(this.UpdateEquipmentbutton_Click);
             // 
-            // ClientslistBox
+            // RemoveEquipmentbutton
             // 
-            this.ClientslistBox.FormattingEnabled = true;
-            this.ClientslistBox.Location = new System.Drawing.Point(26, 37);
-            this.ClientslistBox.Name = "ClientslistBox";
-            this.ClientslistBox.Size = new System.Drawing.Size(240, 160);
-            this.ClientslistBox.TabIndex = 0;
+            this.RemoveEquipmentbutton.Location = new System.Drawing.Point(283, 68);
+            this.RemoveEquipmentbutton.Name = "RemoveEquipmentbutton";
+            this.RemoveEquipmentbutton.Size = new System.Drawing.Size(151, 31);
+            this.RemoveEquipmentbutton.TabIndex = 3;
+            this.RemoveEquipmentbutton.Text = "Remove";
+            this.RemoveEquipmentbutton.UseVisualStyleBackColor = true;
+            this.RemoveEquipmentbutton.Click += new System.EventHandler(this.RemoveEquipmentbutton_Click);
             // 
-            // label1
+            // AddNewEquipmentbutton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Clients";
-            // 
-            // RentslistBox2
-            // 
-            this.RentslistBox2.FormattingEnabled = true;
-            this.RentslistBox2.Location = new System.Drawing.Point(272, 37);
-            this.RentslistBox2.Name = "RentslistBox2";
-            this.RentslistBox2.Size = new System.Drawing.Size(511, 160);
-            this.RentslistBox2.TabIndex = 2;
-            // 
-            // ClientsRentlabel
-            // 
-            this.ClientsRentlabel.AutoSize = true;
-            this.ClientsRentlabel.Location = new System.Drawing.Point(269, 21);
-            this.ClientsRentlabel.Name = "ClientsRentlabel";
-            this.ClientsRentlabel.Size = new System.Drawing.Size(59, 13);
-            this.ClientsRentlabel.TabIndex = 3;
-            this.ClientsRentlabel.Text = "Client rents";
-            // 
-            // AllEquipmentlistBox
-            // 
-            this.AllEquipmentlistBox.FormattingEnabled = true;
-            this.AllEquipmentlistBox.Location = new System.Drawing.Point(17, 31);
-            this.AllEquipmentlistBox.Name = "AllEquipmentlistBox";
-            this.AllEquipmentlistBox.Size = new System.Drawing.Size(260, 446);
-            this.AllEquipmentlistBox.TabIndex = 0;
+            this.AddNewEquipmentbutton.Location = new System.Drawing.Point(283, 31);
+            this.AddNewEquipmentbutton.Name = "AddNewEquipmentbutton";
+            this.AddNewEquipmentbutton.Size = new System.Drawing.Size(151, 31);
+            this.AddNewEquipmentbutton.TabIndex = 2;
+            this.AddNewEquipmentbutton.Text = "Add New";
+            this.AddNewEquipmentbutton.UseVisualStyleBackColor = true;
+            this.AddNewEquipmentbutton.Click += new System.EventHandler(this.AddNewEquipmentbutton_Click);
             // 
             // label2
             // 
@@ -252,59 +294,32 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Equipment:";
             // 
-            // AddNewEquipmentbutton
+            // AllEquipmentlistBox
             // 
-            this.AddNewEquipmentbutton.Location = new System.Drawing.Point(283, 31);
-            this.AddNewEquipmentbutton.Name = "AddNewEquipmentbutton";
-            this.AddNewEquipmentbutton.Size = new System.Drawing.Size(151, 31);
-            this.AddNewEquipmentbutton.TabIndex = 2;
-            this.AddNewEquipmentbutton.Text = "Add New";
-            this.AddNewEquipmentbutton.UseVisualStyleBackColor = true;
+            this.AllEquipmentlistBox.FormattingEnabled = true;
+            this.AllEquipmentlistBox.Location = new System.Drawing.Point(17, 31);
+            this.AllEquipmentlistBox.Name = "AllEquipmentlistBox";
+            this.AllEquipmentlistBox.Size = new System.Drawing.Size(260, 446);
+            this.AllEquipmentlistBox.TabIndex = 0;
             // 
-            // RemoveEquipmentbutton
+            // tabPage3
             // 
-            this.RemoveEquipmentbutton.Location = new System.Drawing.Point(283, 68);
-            this.RemoveEquipmentbutton.Name = "RemoveEquipmentbutton";
-            this.RemoveEquipmentbutton.Size = new System.Drawing.Size(151, 31);
-            this.RemoveEquipmentbutton.TabIndex = 3;
-            this.RemoveEquipmentbutton.Text = "Remove";
-            this.RemoveEquipmentbutton.UseVisualStyleBackColor = true;
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(789, 505);
+            this.tabPage3.TabIndex = 3;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // UpdateEquipmentbutton
+            // FindEquipmentbutton
             // 
-            this.UpdateEquipmentbutton.Location = new System.Drawing.Point(283, 105);
-            this.UpdateEquipmentbutton.Name = "UpdateEquipmentbutton";
-            this.UpdateEquipmentbutton.Size = new System.Drawing.Size(151, 31);
-            this.UpdateEquipmentbutton.TabIndex = 4;
-            this.UpdateEquipmentbutton.Text = "Update";
-            this.UpdateEquipmentbutton.UseVisualStyleBackColor = true;
-            // 
-            // RemoveRentbutton
-            // 
-            this.RemoveRentbutton.Location = new System.Drawing.Point(575, 203);
-            this.RemoveRentbutton.Name = "RemoveRentbutton";
-            this.RemoveRentbutton.Size = new System.Drawing.Size(208, 32);
-            this.RemoveRentbutton.TabIndex = 4;
-            this.RemoveRentbutton.Text = "Remove";
-            this.RemoveRentbutton.UseVisualStyleBackColor = true;
-            // 
-            // Rentbutton
-            // 
-            this.Rentbutton.Location = new System.Drawing.Point(12, 239);
-            this.Rentbutton.Name = "Rentbutton";
-            this.Rentbutton.Size = new System.Drawing.Size(212, 38);
-            this.Rentbutton.TabIndex = 8;
-            this.Rentbutton.Text = "Rent car";
-            this.Rentbutton.UseVisualStyleBackColor = true;
-            // 
-            // Infobutton
-            // 
-            this.Infobutton.Location = new System.Drawing.Point(230, 239);
-            this.Infobutton.Name = "Infobutton";
-            this.Infobutton.Size = new System.Drawing.Size(101, 38);
-            this.Infobutton.TabIndex = 9;
-            this.Infobutton.Text = "More info...";
-            this.Infobutton.UseVisualStyleBackColor = true;
+            this.FindEquipmentbutton.Location = new System.Drawing.Point(465, 31);
+            this.FindEquipmentbutton.Name = "FindEquipmentbutton";
+            this.FindEquipmentbutton.Size = new System.Drawing.Size(86, 31);
+            this.FindEquipmentbutton.TabIndex = 5;
+            this.FindEquipmentbutton.Text = "Find...";
+            this.FindEquipmentbutton.UseVisualStyleBackColor = true;
+            this.FindEquipmentbutton.Click += new System.EventHandler(this.FindEquipmentbutton_Click);
             // 
             // MainForm
             // 
@@ -353,6 +368,7 @@
         private System.Windows.Forms.Button Rentbutton;
         private System.Windows.Forms.Button RemoveRentbutton;
         private System.Windows.Forms.Button Infobutton;
+        private System.Windows.Forms.Button FindEquipmentbutton;
     }
 }
 

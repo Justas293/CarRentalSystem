@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CarRentalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CarRentalSystemDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="ID" />
@@ -159,7 +159,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CarRentalDatabaseModelStoreContainer">
+        <EntityContainer Name="CarRentalSystemDatabaseModelStoreContainer">
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
@@ -201,7 +201,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CarRentalDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CarRentalSystemDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="ID" />
@@ -340,7 +340,7 @@
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <End Role="Examplar" Type="Self.Examplar" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CarRentalDatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CarRentalSystemDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cars" EntityType="Self.Car" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Companies" EntityType="Self.Company" />
@@ -378,9 +378,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CarRentalDatabaseModelStoreContainer" CdmEntityContainer="CarRentalDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="CarRentalSystemDatabaseModelStoreContainer" CdmEntityContainer="CarRentalSystemDatabaseEntities">
           <EntitySetMapping Name="Cars">
-            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Car">
+            <EntityTypeMapping TypeName="CarRentalSystemDatabaseModel.Car">
               <MappingFragment StoreEntitySet="Car">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -391,7 +391,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Client">
+            <EntityTypeMapping TypeName="CarRentalSystemDatabaseModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -401,7 +401,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Company">
+            <EntityTypeMapping TypeName="CarRentalSystemDatabaseModel.Company">
               <MappingFragment StoreEntitySet="Company">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -410,7 +410,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
-            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Equipment">
+            <EntityTypeMapping TypeName="CarRentalSystemDatabaseModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -418,7 +418,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Examplars">
-            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Examplar">
+            <EntityTypeMapping TypeName="CarRentalSystemDatabaseModel.Examplar">
               <MappingFragment StoreEntitySet="Examplar">
                 <ScalarProperty Name="VIN" ColumnName="VIN" />
                 <ScalarProperty Name="CarID" ColumnName="CarID" />
@@ -429,7 +429,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="People">
-            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Person">
+            <EntityTypeMapping TypeName="CarRentalSystemDatabaseModel.Person">
               <MappingFragment StoreEntitySet="Person">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -438,7 +438,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rents">
-            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Rent">
+            <EntityTypeMapping TypeName="CarRentalSystemDatabaseModel.Rent">
               <MappingFragment StoreEntitySet="Rent">
                 <ScalarProperty Name="Nr" ColumnName="Nr" />
                 <ScalarProperty Name="ExamplarVIN" ColumnName="ExamplarVIN" />
@@ -448,7 +448,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="UseEquipment" TypeName="CarRentalDatabaseModel.UseEquipment" StoreEntitySet="UseEquipment">
+          <AssociationSetMapping Name="UseEquipment" TypeName="CarRentalSystemDatabaseModel.UseEquipment" StoreEntitySet="UseEquipment">
             <EndProperty Name="Equipment">
               <ScalarProperty Name="ID" ColumnName="EquipmentID" />
             </EndProperty>

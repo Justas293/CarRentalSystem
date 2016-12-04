@@ -29,6 +29,17 @@ namespace CarRentalSystem
             PopulateExamplars();
             PopulateEquipment();
             PopulateRents();
+            PopulateAllEquipment();
+        }
+
+        private void PopulateAllEquipment()
+        {
+            using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+            {
+                AllEquipmentlistBox.DataSource = context.Equipments.ToList();
+                AllEquipmentlistBox.DisplayMember = "Title";
+                AllEquipmentlistBox.ValueMember = "ID";
+            }
         }
 
         private void PopulateCars()
@@ -171,6 +182,58 @@ namespace CarRentalSystem
         private void Equipment_label_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void AddNewEquipmentbutton_Click(object sender, EventArgs e)
+        {
+            string value = "";
+
+            if(Dialog.InputBox("Add new...", "Enter equipment name", ref value) == DialogResult.OK)
+            {
+                using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+                {
+                    context.Equipments.Add(new Equipment { Title = value });
+                    context.SaveChanges();
+                }
+            }            
+            PopulateAllEquipment();
+        }
+
+        private void RemoveEquipmentbutton_Click(object sender, EventArgs e)
+        {
+            using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+            {
+                //AllEquipmentlistBox.ValueMember = "ID";
+                Equipment item = context.Equipments.FirstOrDefault(eq => eq.ID == (int)AllEquipmentlistBox.SelectedValue);
+                context.Equipments.Remove(item);
+                context.SaveChanges();
+            }
+            PopulateAllEquipment();
+        }
+
+        private void UpdateEquipmentbutton_Click(object sender, EventArgs e)
+        {
+            string value = "";
+            if (Dialog.InputBox("Update...", "Enter new name", ref value) == DialogResult.OK)
+            {
+                using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+                {
+                    Equipment item = context.Equipments.FirstOrDefault(eq => eq.ID == (int)AllEquipmentlistBox.SelectedValue);
+                    item.Title = value;
+                    context.SaveChanges();
+                }
+            }
+            PopulateAllEquipment();
+            
+        }
+
+        private void FindEquipmentbutton_Click(object sender, EventArgs e)
+        {
+            string value = "";
+            if (Dialog.InputBox("Update...", "Enter new name", ref value) == DialogResult.OK)
+            {
+                AllEquipmentlistBox.SelectedIndex = AllEquipmentlistBox.FindStringExact(value);
+            }
         }
     }
 }

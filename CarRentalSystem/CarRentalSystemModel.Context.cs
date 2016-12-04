@@ -13,10 +13,10 @@ namespace CarRentalSystem
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CarRentalDatabaseEntities : DbContext
+    public partial class CarRentalSystemDatabaseEntities : DbContext
     {
-        public CarRentalDatabaseEntities()
-            : base("name=CarRentalDatabaseEntities")
+        public CarRentalSystemDatabaseEntities()
+            : base("name=CarRentalSystemDatabaseEntities")
         {
         }
     
