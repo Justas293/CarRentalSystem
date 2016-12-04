@@ -239,6 +239,7 @@
             this.ClientslistBox.Name = "ClientslistBox";
             this.ClientslistBox.Size = new System.Drawing.Size(240, 160);
             this.ClientslistBox.TabIndex = 0;
+            this.ClientslistBox.SelectedIndexChanged += new System.EventHandler(this.ClientslistBox_SelectedIndexChanged);
             // 
             // EquipmenttabPage
             // 

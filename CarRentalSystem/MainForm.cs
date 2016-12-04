@@ -29,10 +29,64 @@ namespace CarRentalSystem
             PopulateExamplars();
             PopulateEquipment();
             PopulateRents();
-            PopulateAllEquipment();
+            PopulateEquipmentTab();
+            PopulateClientsTab();
+            PopulateClientRents();
         }
 
-        private void PopulateAllEquipment()
+        private void PopulateClientsTab()
+        {
+            using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+            {
+                //clients listbox
+                var results_client = (from client in context.Clients
+                                      select new
+                                      {
+                                          ID = client.ID,
+                                          Name = client.Person.Name,
+                                          Surname = client.Person.Surname,
+                                          Title = client.Company.Title,
+                                          PhoneNumber = client.Phone,
+                                          row = client.Person.Name + " " + client.Person.Surname + client.Company.Title
+                                      }).ToList();
+                ClientslistBox.DataSource = results_client;
+                ClientslistBox.DisplayMember = "row";
+                ClientslistBox.ValueMember = "ID";
+
+                context.SaveChanges();
+            }
+        }
+
+        private void PopulateClientRents()
+        {
+            //client rents listbox
+            using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+            {
+                ClientslistBox.ValueMember = "ID";
+                    var results_rents = (from rent in context.Rents
+                                         where rent.ClientID == (int)ClientslistBox.SelectedValue
+                                         select new
+                                         {
+                                             Nr = rent.Nr,
+                                             ExamplarVIN = rent.ExamplarVIN,
+                                             Pick_up = rent.Pick_up,
+                                             Return = rent.Return,
+                                             FullRow = "VIN: "
+                                             + rent.ExamplarVIN + "       Date to pick up: "
+                                             + rent.Pick_up + " - "
+                                             + rent.Return
+                                         }).ToList();
+
+                    RentslistBox2.DataSource = results_rents;
+                    RentslistBox2.DisplayMember = "FullRow";
+                    RentslistBox2.ValueMember = "Nr";
+                
+                context.SaveChanges();
+            }
+        
+        }
+
+        private void PopulateEquipmentTab()
         {
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {
@@ -196,7 +250,7 @@ namespace CarRentalSystem
                     context.SaveChanges();
                 }
             }            
-            PopulateAllEquipment();
+            PopulateEquipmentTab();
         }
 
         private void RemoveEquipmentbutton_Click(object sender, EventArgs e)
@@ -208,7 +262,7 @@ namespace CarRentalSystem
                 context.Equipments.Remove(item);
                 context.SaveChanges();
             }
-            PopulateAllEquipment();
+            PopulateEquipmentTab();
         }
 
         private void UpdateEquipmentbutton_Click(object sender, EventArgs e)
@@ -223,7 +277,7 @@ namespace CarRentalSystem
                     context.SaveChanges();
                 }
             }
-            PopulateAllEquipment();
+            PopulateEquipmentTab();
             
         }
 
@@ -234,6 +288,11 @@ namespace CarRentalSystem
             {
                 AllEquipmentlistBox.SelectedIndex = AllEquipmentlistBox.FindStringExact(value);
             }
+        }
+
+        private void ClientslistBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateClientRents();
         }
     }
 }
