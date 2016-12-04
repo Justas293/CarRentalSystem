@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarRentalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Class" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Body" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="E-mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Examplar">
+          <Key>
+            <PropertyRef Name="VIN" />
+          </Key>
+          <Property Name="VIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CarID" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fuel_cost" Type="decimal" Precision="18" Scale="1" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="Nr" />
+          </Key>
+          <Property Name="Nr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExamplarVIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pick-up" Type="date" Nullable="false" />
+          <Property Name="Return" Type="date" Nullable="false" />
+          <Property Name="ClientID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UseEquipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+            <PropertyRef Name="ExamplarVIN" />
+          </Key>
+          <Property Name="EquipmentID" Type="int" Nullable="false" />
+          <Property Name="ExamplarVIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="CarFK">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="Examplar" Type="Self.Examplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Examplar">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClientFK">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EquipmentFK">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="UseEquipment" Type="Self.UseEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UseEquipment">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExamplarFK">
+          <End Role="Examplar" Type="Self.Examplar" Multiplicity="1" />
+          <End Role="UseEquipment" Type="Self.UseEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Examplar">
+              <PropertyRef Name="VIN" />
+            </Principal>
+            <Dependent Role="UseEquipment">
+              <PropertyRef Name="ExamplarVIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Company__ID__412EB0B6">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rent__ExamplarVI__3C69FB99">
+          <End Role="Examplar" Type="Self.Examplar" Multiplicity="1" />
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Examplar">
+              <PropertyRef Name="VIN" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="ExamplarVIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ToClientFK">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarRentalDatabaseModelStoreContainer">
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Examplar" EntityType="Self.Examplar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rent" EntityType="Self.Rent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UseEquipment" EntityType="Self.UseEquipment" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="CarFK" Association="Self.CarFK">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Examplar" EntitySet="Examplar" />
+          </AssociationSet>
+          <AssociationSet Name="ClientFK" Association="Self.ClientFK">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="EquipmentFK" Association="Self.EquipmentFK">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="UseEquipment" EntitySet="UseEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="ExamplarFK" Association="Self.ExamplarFK">
+            <End Role="Examplar" EntitySet="Examplar" />
+            <End Role="UseEquipment" EntitySet="UseEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Company__ID__412EB0B6" Association="Self.FK__Company__ID__412EB0B6">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rent__ExamplarVI__3C69FB99" Association="Self.FK__Rent__ExamplarVI__3C69FB99">
+            <End Role="Examplar" EntitySet="Examplar" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="ToClientFK" Association="Self.ToClientFK">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarRentalDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Body" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Examplars" Relationship="Self.CarFK" FromRole="Car" ToRole="Examplar" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="E_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Rents" Relationship="Self.ClientFK" FromRole="Client" ToRole="Rent" />
+          <NavigationProperty Name="Company" Relationship="Self.FK__Company__ID__412EB0B6" FromRole="Client" ToRole="Company" />
+          <NavigationProperty Name="Person" Relationship="Self.ToClientFK" FromRole="Client" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Company__ID__412EB0B6" FromRole="Company" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Examplars" Relationship="Self.UseEquipment" FromRole="Equipment" ToRole="Examplar" />
+        </EntityType>
+        <EntityType Name="Examplar">
+          <Key>
+            <PropertyRef Name="VIN" />
+          </Key>
+          <Property Name="VIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CarID" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fuel_cost" Type="Decimal" Precision="18" Scale="1" />
+          <NavigationProperty Name="Car" Relationship="Self.CarFK" FromRole="Examplar" ToRole="Car" />
+          <NavigationProperty Name="Rents" Relationship="Self.FK__Rent__ExamplarVI__3C69FB99" FromRole="Examplar" ToRole="Rent" />
+          <NavigationProperty Name="Equipments" Relationship="Self.UseEquipment" FromRole="Examplar" ToRole="Equipment" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.ToClientFK" FromRole="Person" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="Nr" />
+          </Key>
+          <Property Name="Nr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExamplarVIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pick_up" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Return" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.ClientFK" FromRole="Rent" ToRole="Client" />
+          <NavigationProperty Name="Examplar" Relationship="Self.FK__Rent__ExamplarVI__3C69FB99" FromRole="Rent" ToRole="Examplar" />
+        </EntityType>
+        <Association Name="CarFK">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="Examplar" Type="Self.Examplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Examplar">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClientFK">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Company__ID__412EB0B6">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ToClientFK">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rent__ExamplarVI__3C69FB99">
+          <End Role="Examplar" Type="Self.Examplar" Multiplicity="1" />
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Examplar">
+              <PropertyRef Name="VIN" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="ExamplarVIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UseEquipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <End Role="Examplar" Type="Self.Examplar" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CarRentalDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="Examplars" EntityType="Self.Examplar" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Rents" EntityType="Self.Rent" />
+          <AssociationSet Name="CarFK" Association="Self.CarFK">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="Examplar" EntitySet="Examplars" />
+          </AssociationSet>
+          <AssociationSet Name="ClientFK" Association="Self.ClientFK">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Rent" EntitySet="Rents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Company__ID__412EB0B6" Association="Self.FK__Company__ID__412EB0B6">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="ToClientFK" Association="Self.ToClientFK">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rent__ExamplarVI__3C69FB99" Association="Self.FK__Rent__ExamplarVI__3C69FB99">
+            <End Role="Examplar" EntitySet="Examplars" />
+            <End Role="Rent" EntitySet="Rents" />
+          </AssociationSet>
+          <AssociationSet Name="UseEquipment" Association="Self.UseEquipment">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="Examplar" EntitySet="Examplars" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarRentalDatabaseModelStoreContainer" CdmEntityContainer="CarRentalDatabaseEntities">
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipments">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Examplars">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Examplar">
+              <MappingFragment StoreEntitySet="Examplar">
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Fuel_cost" ColumnName="Fuel_cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rents">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Rent">
+              <MappingFragment StoreEntitySet="Rent">
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="ExamplarVIN" ColumnName="ExamplarVIN" />
+                <ScalarProperty Name="Pick_up" ColumnName="Pick-up" />
+                <ScalarProperty Name="Return" ColumnName="Return" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UseEquipment" TypeName="CarRentalDatabaseModel.UseEquipment" StoreEntitySet="UseEquipment">
+            <EndProperty Name="Equipment">
+              <ScalarProperty Name="ID" ColumnName="EquipmentID" />
+            </EndProperty>
+            <EndProperty Name="Examplar">
+              <ScalarProperty Name="VIN" ColumnName="ExamplarVIN" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
