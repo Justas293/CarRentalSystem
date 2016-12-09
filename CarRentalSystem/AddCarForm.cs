@@ -24,19 +24,68 @@ namespace CarRentalSystem
 
         private void AddCarForm_AddButton_Click(object sender, EventArgs e)
         {
-            using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+             {
+                 context.Cars.Add(new Car
+                 {
+                     Title = this.AddCarForm_NameTextBox.Text,
+                     Class = this.AddCarForm_ClassTextBox.Text,
+                     Body = this.AddCarForm_BodyTextBox.Text,
+                     Price = Int32.Parse(this.AddCarForm_PriceTextBox.Text)
+                 });
+                 context.SaveChanges();
+             }
+             this.Dispose();    
+        }
+
+        private void AddCarForm_NameTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(AddCarForm_NameTextBox.Text))
             {
-                context.Cars.Add(new Car
-                {
-                    Title = this.AddCarForm_NameTextBox.Text,
-                    Class = this.AddCarForm_ClassTextBox.Text,
-                    Body = this.AddCarForm_BodyTextBox.Text,
-                    Price = Int32.Parse(this.AddCarForm_PriceTextBox.Text)
-                });
-                context.SaveChanges();
+                errorProvider1.SetError(AddCarForm_NameTextBox, "Please enter model name!");
+                AddCarForm_NameTextBox.Focus();
             }
-            
-            this.Dispose();
+            else
+            {
+                errorProvider1.SetError(AddCarForm_NameTextBox, null);
+            }
+        }
+
+        private void AddCarForm_ClassTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(AddCarForm_ClassTextBox.Text))
+            {
+                errorProvider1.SetError(AddCarForm_ClassTextBox, "Please enter model class!");
+            }
+            else
+            {
+                errorProvider1.SetError(AddCarForm_ClassTextBox, null);
+            }
+        }
+
+        private void AddCarForm_BodyTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(AddCarForm_BodyTextBox.Text))
+            {
+                errorProvider1.SetError(AddCarForm_BodyTextBox, "Please enter model name!");
+            }
+            else
+            {
+                errorProvider1.SetError(AddCarForm_BodyTextBox, null);
+            }
+        }
+
+        private void AddCarForm_PriceTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            int res;
+            if (!int.TryParse(AddCarForm_PriceTextBox.Text, out res))
+            {
+                errorProvider1.SetError(AddCarForm_PriceTextBox, "Invalid value!");
+            }
+            else
+            {
+                errorProvider1.SetError(AddCarForm_PriceTextBox, null);
+            }
         }
     }
 }

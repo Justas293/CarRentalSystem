@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AddCarForm_NameLabel = new System.Windows.Forms.Label();
             this.AddCarForm_ClassLabel = new System.Windows.Forms.Label();
             this.AddCarForm_BodyLabel = new System.Windows.Forms.Label();
@@ -38,6 +39,8 @@
             this.AddCarForm_ClassTextBox = new System.Windows.Forms.TextBox();
             this.AddCarForm_BodyTextBox = new System.Windows.Forms.TextBox();
             this.AddCarForm_PriceTextBox = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // AddCarForm_NameLabel
@@ -101,6 +104,7 @@
             this.AddCarForm_NameTextBox.Name = "AddCarForm_NameTextBox";
             this.AddCarForm_NameTextBox.Size = new System.Drawing.Size(252, 20);
             this.AddCarForm_NameTextBox.TabIndex = 7;
+            this.AddCarForm_NameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.AddCarForm_NameTextBox_Validating);
             // 
             // AddCarForm_ClassTextBox
             // 
@@ -108,6 +112,7 @@
             this.AddCarForm_ClassTextBox.Name = "AddCarForm_ClassTextBox";
             this.AddCarForm_ClassTextBox.Size = new System.Drawing.Size(165, 20);
             this.AddCarForm_ClassTextBox.TabIndex = 8;
+            this.AddCarForm_ClassTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.AddCarForm_ClassTextBox_Validating);
             // 
             // AddCarForm_BodyTextBox
             // 
@@ -115,6 +120,7 @@
             this.AddCarForm_BodyTextBox.Name = "AddCarForm_BodyTextBox";
             this.AddCarForm_BodyTextBox.Size = new System.Drawing.Size(165, 20);
             this.AddCarForm_BodyTextBox.TabIndex = 9;
+            this.AddCarForm_BodyTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.AddCarForm_BodyTextBox_Validating);
             // 
             // AddCarForm_PriceTextBox
             // 
@@ -122,6 +128,11 @@
             this.AddCarForm_PriceTextBox.Name = "AddCarForm_PriceTextBox";
             this.AddCarForm_PriceTextBox.Size = new System.Drawing.Size(70, 20);
             this.AddCarForm_PriceTextBox.TabIndex = 10;
+            this.AddCarForm_PriceTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.AddCarForm_PriceTextBox_Validating);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // AddCarForm
             // 
@@ -141,6 +152,7 @@
             this.Name = "AddCarForm";
             this.Text = "AddCarForm";
             this.Load += new System.EventHandler(this.AddCarForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,5 +170,6 @@
         private System.Windows.Forms.TextBox AddCarForm_ClassTextBox;
         private System.Windows.Forms.TextBox AddCarForm_BodyTextBox;
         private System.Windows.Forms.TextBox AddCarForm_PriceTextBox;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
