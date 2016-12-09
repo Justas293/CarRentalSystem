@@ -328,8 +328,7 @@ namespace CarRentalSystem
                 PopulateRents();
                 PopulateClientsTab();
             }
-            else MessageBox.Show("Nepasirinkote egzemplioriaus!");
-            
+            else MessageBox.Show("Nepasirinkote egzemplioriaus!");            
         }
     }
 }

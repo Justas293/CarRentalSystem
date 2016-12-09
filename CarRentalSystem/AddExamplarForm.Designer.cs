@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -38,6 +39,8 @@
             this.FuelTextBox = new System.Windows.Forms.TextBox();
             this.AddExamplarButton = new System.Windows.Forms.Button();
             this.AddExamplarCancelButton = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -82,6 +85,7 @@
             this.VINtextBox.Name = "VINtextBox";
             this.VINtextBox.Size = new System.Drawing.Size(207, 20);
             this.VINtextBox.TabIndex = 6;
+            this.VINtextBox.Validating += new System.ComponentModel.CancelEventHandler(this.VINtextBox_Validating);
             // 
             // YearTextBox
             // 
@@ -89,6 +93,7 @@
             this.YearTextBox.Name = "YearTextBox";
             this.YearTextBox.Size = new System.Drawing.Size(94, 20);
             this.YearTextBox.TabIndex = 7;
+            this.YearTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.YearTextBox_Validating);
             // 
             // ColorTextBox
             // 
@@ -96,6 +101,7 @@
             this.ColorTextBox.Name = "ColorTextBox";
             this.ColorTextBox.Size = new System.Drawing.Size(94, 20);
             this.ColorTextBox.TabIndex = 8;
+            this.ColorTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ColorTextBox_Validating);
             // 
             // FuelTextBox
             // 
@@ -103,6 +109,7 @@
             this.FuelTextBox.Name = "FuelTextBox";
             this.FuelTextBox.Size = new System.Drawing.Size(94, 20);
             this.FuelTextBox.TabIndex = 9;
+            this.FuelTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.FuelTextBox_Validating);
             // 
             // AddExamplarButton
             // 
@@ -124,6 +131,10 @@
             this.AddExamplarCancelButton.UseVisualStyleBackColor = true;
             this.AddExamplarCancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // AddExamplarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -141,6 +152,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddExamplarForm";
             this.Text = "AddExamplarForm";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,5 +170,6 @@
         private System.Windows.Forms.TextBox FuelTextBox;
         private System.Windows.Forms.Button AddExamplarButton;
         private System.Windows.Forms.Button AddExamplarCancelButton;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

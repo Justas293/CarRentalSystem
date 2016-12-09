@@ -40,5 +40,55 @@ namespace CarRentalSystem
         {
             this.Dispose();
         }
+
+        private void VINtextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(VINtextBox.Text))
+            {
+                errorProvider1.SetError(VINtextBox, "Please enter VIN number!");
+            }
+            else
+            {
+                errorProvider1.SetError(VINtextBox, null);
+            }
+        }
+
+        private void YearTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            int res;
+            if (!int.TryParse(YearTextBox.Text, out res))
+            {
+                errorProvider1.SetError(YearTextBox, "Invalid value!");
+            }
+            else
+            {
+                errorProvider1.SetError(YearTextBox, null);
+            }
+        }
+
+        private void ColorTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ColorTextBox.Text))
+            {
+                errorProvider1.SetError(ColorTextBox, "Please enter color!");
+            }
+            else
+            {
+                errorProvider1.SetError(ColorTextBox, null);
+            }
+        }
+
+        private void FuelTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            decimal res;
+            if (!decimal.TryParse(FuelTextBox.Text, out res))
+            {
+                errorProvider1.SetError(FuelTextBox, "Invalid value!");
+            }
+            else
+            {
+                errorProvider1.SetError(FuelTextBox, null);
+            }
+        }
     }
 }
