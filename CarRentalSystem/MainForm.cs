@@ -317,11 +317,19 @@ namespace CarRentalSystem
         private void Rentbutton_Click(object sender, EventArgs e)
         {
             Examplars_listBox.ValueMember = "VIN";
-            using (RentCarForm rentcarform = new RentCarForm((string)Examplars_listBox.SelectedValue))
+            if (Examplars_listBox.SelectedValue != null)
             {
-                rentcarform.ShowDialog();
+                using (RentCarForm rentcarform = new RentCarForm((string)Examplars_listBox.SelectedValue))
+                {
+                    rentcarform.ShowDialog();
+                }
+
+                PopulateExamplars();
+                PopulateRents();
+                PopulateClientsTab();
             }
-            PopulateExamplars();
+            else MessageBox.Show("Nepasirinkote egzemplioriaus!");
+            
         }
     }
 }

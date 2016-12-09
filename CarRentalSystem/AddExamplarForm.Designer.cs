@@ -37,7 +37,7 @@
             this.ColorTextBox = new System.Windows.Forms.TextBox();
             this.FuelTextBox = new System.Windows.Forms.TextBox();
             this.AddExamplarButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.AddExamplarCancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -114,22 +114,22 @@
             this.AddExamplarButton.UseVisualStyleBackColor = true;
             this.AddExamplarButton.Click += new System.EventHandler(this.AddExamplarButton_Click);
             // 
-            // CancelButton
+            // AddExamplarCancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(200, 192);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(107, 27);
-            this.CancelButton.TabIndex = 11;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.AddExamplarCancelButton.Location = new System.Drawing.Point(200, 192);
+            this.AddExamplarCancelButton.Name = "AddExamplarCancelButton";
+            this.AddExamplarCancelButton.Size = new System.Drawing.Size(107, 27);
+            this.AddExamplarCancelButton.TabIndex = 11;
+            this.AddExamplarCancelButton.Text = "Cancel";
+            this.AddExamplarCancelButton.UseVisualStyleBackColor = true;
+            this.AddExamplarCancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // AddExamplarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(319, 245);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.AddExamplarCancelButton);
             this.Controls.Add(this.AddExamplarButton);
             this.Controls.Add(this.FuelTextBox);
             this.Controls.Add(this.ColorTextBox);
@@ -157,6 +157,6 @@
         private System.Windows.Forms.TextBox ColorTextBox;
         private System.Windows.Forms.TextBox FuelTextBox;
         private System.Windows.Forms.Button AddExamplarButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button AddExamplarCancelButton;
     }
 }

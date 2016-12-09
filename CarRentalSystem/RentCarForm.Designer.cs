@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.PickuptextBox = new System.Windows.Forms.TextBox();
-            this.ReturntextBox = new System.Windows.Forms.TextBox();
             this.Rentbutton = new System.Windows.Forms.Button();
             this.Cancelbutton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -40,8 +39,16 @@
             this.PhonetextBox = new System.Windows.Forms.TextBox();
             this.AddresstextBox = new System.Windows.Forms.TextBox();
             this.EmailtextBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.RentCarNameTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.radioButtonCompany = new System.Windows.Forms.RadioButton();
+            this.radioButtonIndividual = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.companyCodeTextBox = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,37 +69,25 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Return day";
             // 
-            // PickuptextBox
-            // 
-            this.PickuptextBox.Location = new System.Drawing.Point(116, 172);
-            this.PickuptextBox.Name = "PickuptextBox";
-            this.PickuptextBox.Size = new System.Drawing.Size(168, 20);
-            this.PickuptextBox.TabIndex = 2;
-            // 
-            // ReturntextBox
-            // 
-            this.ReturntextBox.Location = new System.Drawing.Point(116, 205);
-            this.ReturntextBox.Name = "ReturntextBox";
-            this.ReturntextBox.Size = new System.Drawing.Size(168, 20);
-            this.ReturntextBox.TabIndex = 3;
-            // 
             // Rentbutton
             // 
-            this.Rentbutton.Location = new System.Drawing.Point(99, 249);
+            this.Rentbutton.Location = new System.Drawing.Point(92, 287);
             this.Rentbutton.Name = "Rentbutton";
             this.Rentbutton.Size = new System.Drawing.Size(91, 29);
             this.Rentbutton.TabIndex = 4;
             this.Rentbutton.Text = "Rent...";
             this.Rentbutton.UseVisualStyleBackColor = true;
+            this.Rentbutton.Click += new System.EventHandler(this.Rentbutton_Click);
             // 
             // Cancelbutton
             // 
-            this.Cancelbutton.Location = new System.Drawing.Point(196, 249);
+            this.Cancelbutton.Location = new System.Drawing.Point(189, 287);
             this.Cancelbutton.Name = "Cancelbutton";
             this.Cancelbutton.Size = new System.Drawing.Size(88, 29);
             this.Cancelbutton.TabIndex = 5;
             this.Cancelbutton.Text = "Cancel";
             this.Cancelbutton.UseVisualStyleBackColor = true;
+            this.Cancelbutton.Click += new System.EventHandler(this.Cancelbutton_Click);
             // 
             // label7
             // 
@@ -127,6 +122,7 @@
             this.PhonetextBox.Name = "PhonetextBox";
             this.PhonetextBox.Size = new System.Drawing.Size(168, 20);
             this.PhonetextBox.TabIndex = 10;
+            this.PhonetextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PhonetextBox_Validating);
             // 
             // AddresstextBox
             // 
@@ -134,6 +130,7 @@
             this.AddresstextBox.Name = "AddresstextBox";
             this.AddresstextBox.Size = new System.Drawing.Size(168, 20);
             this.AddresstextBox.TabIndex = 11;
+            this.AddresstextBox.Validating += new System.ComponentModel.CancelEventHandler(this.AddresstextBox_Validating);
             // 
             // EmailtextBox
             // 
@@ -141,30 +138,100 @@
             this.EmailtextBox.Name = "EmailtextBox";
             this.EmailtextBox.Size = new System.Drawing.Size(168, 20);
             this.EmailtextBox.TabIndex = 12;
+            this.EmailtextBox.Validating += new System.ComponentModel.CancelEventHandler(this.EmailtextBox_Validating);
             // 
-            // textBox1
+            // RentCarNameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(37, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(247, 20);
-            this.textBox1.TabIndex = 14;
+            this.RentCarNameTextBox.Location = new System.Drawing.Point(37, 25);
+            this.RentCarNameTextBox.Name = "RentCarNameTextBox";
+            this.RentCarNameTextBox.Size = new System.Drawing.Size(247, 20);
+            this.RentCarNameTextBox.TabIndex = 14;
+            this.RentCarNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.RentCarNameTextBox_Validating);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 19);
+            this.label3.Location = new System.Drawing.Point(34, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(185, 13);
             this.label3.TabIndex = 15;
             this.label3.Text = "Name and Surname / Company name";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Location = new System.Drawing.Point(116, 172);
+            this.dateTimePicker1.MinDate = new System.DateTime(2016, 12, 9, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(168, 20);
+            this.dateTimePicker1.TabIndex = 16;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker2.Location = new System.Drawing.Point(116, 199);
+            this.dateTimePicker2.MinDate = new System.DateTime(2016, 12, 9, 0, 0, 0, 0);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(168, 20);
+            this.dateTimePicker2.TabIndex = 17;
+            // 
+            // radioButtonCompany
+            // 
+            this.radioButtonCompany.AutoSize = true;
+            this.radioButtonCompany.Location = new System.Drawing.Point(116, 244);
+            this.radioButtonCompany.Name = "radioButtonCompany";
+            this.radioButtonCompany.Size = new System.Drawing.Size(69, 17);
+            this.radioButtonCompany.TabIndex = 18;
+            this.radioButtonCompany.TabStop = true;
+            this.radioButtonCompany.Text = "Company";
+            this.radioButtonCompany.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonIndividual
+            // 
+            this.radioButtonIndividual.AutoSize = true;
+            this.radioButtonIndividual.Checked = true;
+            this.radioButtonIndividual.Location = new System.Drawing.Point(199, 244);
+            this.radioButtonIndividual.Name = "radioButtonIndividual";
+            this.radioButtonIndividual.Size = new System.Drawing.Size(70, 17);
+            this.radioButtonIndividual.TabIndex = 19;
+            this.radioButtonIndividual.TabStop = true;
+            this.radioButtonIndividual.Text = "Individual";
+            this.radioButtonIndividual.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(34, 58);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Company code";
+            // 
+            // companyCodeTextBox
+            // 
+            this.companyCodeTextBox.Location = new System.Drawing.Point(116, 55);
+            this.companyCodeTextBox.Name = "companyCodeTextBox";
+            this.companyCodeTextBox.Size = new System.Drawing.Size(168, 20);
+            this.companyCodeTextBox.TabIndex = 21;
+            this.companyCodeTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.companyCodeTextBox_Validating);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // RentCarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(312, 293);
+            this.ClientSize = new System.Drawing.Size(324, 328);
+            this.Controls.Add(this.companyCodeTextBox);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.radioButtonIndividual);
+            this.Controls.Add(this.radioButtonCompany);
+            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.RentCarNameTextBox);
             this.Controls.Add(this.EmailtextBox);
             this.Controls.Add(this.AddresstextBox);
             this.Controls.Add(this.PhonetextBox);
@@ -173,12 +240,11 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.Cancelbutton);
             this.Controls.Add(this.Rentbutton);
-            this.Controls.Add(this.ReturntextBox);
-            this.Controls.Add(this.PickuptextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "RentCarForm";
             this.Text = "RentCarForm";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,8 +254,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox PickuptextBox;
-        private System.Windows.Forms.TextBox ReturntextBox;
         private System.Windows.Forms.Button Rentbutton;
         private System.Windows.Forms.Button Cancelbutton;
         private System.Windows.Forms.Label label7;
@@ -198,7 +262,14 @@
         private System.Windows.Forms.TextBox PhonetextBox;
         private System.Windows.Forms.TextBox AddresstextBox;
         private System.Windows.Forms.TextBox EmailtextBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox RentCarNameTextBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.RadioButton radioButtonCompany;
+        private System.Windows.Forms.RadioButton radioButtonIndividual;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox companyCodeTextBox;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
