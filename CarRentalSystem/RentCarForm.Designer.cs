@@ -54,7 +54,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 172);
+            this.label1.Location = new System.Drawing.Point(47, 212);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 0;
@@ -63,7 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 205);
+            this.label2.Location = new System.Drawing.Point(51, 238);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 1;
@@ -92,7 +92,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(34, 87);
+            this.label7.Location = new System.Drawing.Point(34, 137);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(76, 13);
             this.label7.TabIndex = 7;
@@ -101,7 +101,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(65, 111);
+            this.label8.Location = new System.Drawing.Point(67, 163);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 13);
             this.label8.TabIndex = 8;
@@ -110,7 +110,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(75, 141);
+            this.label9.Location = new System.Drawing.Point(75, 189);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 9;
@@ -118,7 +118,7 @@
             // 
             // PhonetextBox
             // 
-            this.PhonetextBox.Location = new System.Drawing.Point(116, 84);
+            this.PhonetextBox.Location = new System.Drawing.Point(116, 134);
             this.PhonetextBox.Name = "PhonetextBox";
             this.PhonetextBox.Size = new System.Drawing.Size(168, 20);
             this.PhonetextBox.TabIndex = 10;
@@ -126,7 +126,7 @@
             // 
             // AddresstextBox
             // 
-            this.AddresstextBox.Location = new System.Drawing.Point(116, 110);
+            this.AddresstextBox.Location = new System.Drawing.Point(116, 160);
             this.AddresstextBox.Name = "AddresstextBox";
             this.AddresstextBox.Size = new System.Drawing.Size(168, 20);
             this.AddresstextBox.TabIndex = 11;
@@ -134,7 +134,7 @@
             // 
             // EmailtextBox
             // 
-            this.EmailtextBox.Location = new System.Drawing.Point(116, 138);
+            this.EmailtextBox.Location = new System.Drawing.Point(116, 186);
             this.EmailtextBox.Name = "EmailtextBox";
             this.EmailtextBox.Size = new System.Drawing.Size(168, 20);
             this.EmailtextBox.TabIndex = 12;
@@ -142,7 +142,7 @@
             // 
             // RentCarNameTextBox
             // 
-            this.RentCarNameTextBox.Location = new System.Drawing.Point(37, 25);
+            this.RentCarNameTextBox.Location = new System.Drawing.Point(37, 82);
             this.RentCarNameTextBox.Name = "RentCarNameTextBox";
             this.RentCarNameTextBox.Size = new System.Drawing.Size(247, 20);
             this.RentCarNameTextBox.TabIndex = 14;
@@ -151,7 +151,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 9);
+            this.label3.Location = new System.Drawing.Point(34, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(185, 13);
             this.label3.TabIndex = 15;
@@ -160,7 +160,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Location = new System.Drawing.Point(116, 172);
+            this.dateTimePicker1.Location = new System.Drawing.Point(116, 212);
             this.dateTimePicker1.MinDate = new System.DateTime(2016, 12, 9, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(168, 20);
@@ -169,7 +169,7 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker2.Location = new System.Drawing.Point(116, 199);
+            this.dateTimePicker2.Location = new System.Drawing.Point(116, 238);
             this.dateTimePicker2.MinDate = new System.DateTime(2016, 12, 9, 0, 0, 0, 0);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(168, 20);
@@ -178,7 +178,7 @@
             // radioButtonCompany
             // 
             this.radioButtonCompany.AutoSize = true;
-            this.radioButtonCompany.Location = new System.Drawing.Point(116, 244);
+            this.radioButtonCompany.Location = new System.Drawing.Point(37, 24);
             this.radioButtonCompany.Name = "radioButtonCompany";
             this.radioButtonCompany.Size = new System.Drawing.Size(69, 17);
             this.radioButtonCompany.TabIndex = 18;
@@ -190,7 +190,7 @@
             // 
             this.radioButtonIndividual.AutoSize = true;
             this.radioButtonIndividual.Checked = true;
-            this.radioButtonIndividual.Location = new System.Drawing.Point(199, 244);
+            this.radioButtonIndividual.Location = new System.Drawing.Point(207, 24);
             this.radioButtonIndividual.Name = "radioButtonIndividual";
             this.radioButtonIndividual.Size = new System.Drawing.Size(70, 17);
             this.radioButtonIndividual.TabIndex = 19;
@@ -201,7 +201,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 58);
+            this.label4.Location = new System.Drawing.Point(32, 111);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 20;
@@ -209,7 +209,7 @@
             // 
             // companyCodeTextBox
             // 
-            this.companyCodeTextBox.Location = new System.Drawing.Point(116, 55);
+            this.companyCodeTextBox.Location = new System.Drawing.Point(116, 108);
             this.companyCodeTextBox.Name = "companyCodeTextBox";
             this.companyCodeTextBox.Size = new System.Drawing.Size(168, 20);
             this.companyCodeTextBox.TabIndex = 21;
