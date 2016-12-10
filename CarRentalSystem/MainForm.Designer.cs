@@ -58,6 +58,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.AllEquipmentlistBox = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.clientSearchBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.MaintabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
@@ -211,6 +212,7 @@
             // 
             // ClientstabPage
             // 
+            this.ClientstabPage.Controls.Add(this.clientSearchBox);
             this.ClientstabPage.Controls.Add(this.UpdateClientbutton);
             this.ClientstabPage.Controls.Add(this.RemoveClientbutton);
             this.ClientstabPage.Controls.Add(this.ReturnCarButton);
@@ -228,7 +230,7 @@
             // 
             // UpdateClientbutton
             // 
-            this.UpdateClientbutton.Location = new System.Drawing.Point(26, 203);
+            this.UpdateClientbutton.Location = new System.Drawing.Point(26, 245);
             this.UpdateClientbutton.Name = "UpdateClientbutton";
             this.UpdateClientbutton.Size = new System.Drawing.Size(126, 32);
             this.UpdateClientbutton.TabIndex = 6;
@@ -237,7 +239,7 @@
             // 
             // RemoveClientbutton
             // 
-            this.RemoveClientbutton.Location = new System.Drawing.Point(158, 203);
+            this.RemoveClientbutton.Location = new System.Drawing.Point(158, 245);
             this.RemoveClientbutton.Name = "RemoveClientbutton";
             this.RemoveClientbutton.Size = new System.Drawing.Size(108, 32);
             this.RemoveClientbutton.TabIndex = 5;
@@ -247,7 +249,7 @@
             // 
             // ReturnCarButton
             // 
-            this.ReturnCarButton.Location = new System.Drawing.Point(575, 203);
+            this.ReturnCarButton.Location = new System.Drawing.Point(575, 245);
             this.ReturnCarButton.Name = "ReturnCarButton";
             this.ReturnCarButton.Size = new System.Drawing.Size(208, 32);
             this.ReturnCarButton.TabIndex = 4;
@@ -258,7 +260,7 @@
             // ClientsRentlabel
             // 
             this.ClientsRentlabel.AutoSize = true;
-            this.ClientsRentlabel.Location = new System.Drawing.Point(269, 21);
+            this.ClientsRentlabel.Location = new System.Drawing.Point(269, 63);
             this.ClientsRentlabel.Name = "ClientsRentlabel";
             this.ClientsRentlabel.Size = new System.Drawing.Size(59, 13);
             this.ClientsRentlabel.TabIndex = 3;
@@ -267,7 +269,7 @@
             // RentslistBox2
             // 
             this.RentslistBox2.FormattingEnabled = true;
-            this.RentslistBox2.Location = new System.Drawing.Point(272, 37);
+            this.RentslistBox2.Location = new System.Drawing.Point(272, 79);
             this.RentslistBox2.Name = "RentslistBox2";
             this.RentslistBox2.Size = new System.Drawing.Size(511, 160);
             this.RentslistBox2.TabIndex = 2;
@@ -275,7 +277,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 21);
+            this.label1.Location = new System.Drawing.Point(23, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 1;
@@ -284,7 +286,7 @@
             // ClientslistBox
             // 
             this.ClientslistBox.FormattingEnabled = true;
-            this.ClientslistBox.Location = new System.Drawing.Point(26, 37);
+            this.ClientslistBox.Location = new System.Drawing.Point(26, 79);
             this.ClientslistBox.Name = "ClientslistBox";
             this.ClientslistBox.Size = new System.Drawing.Size(240, 160);
             this.ClientslistBox.TabIndex = 0;
@@ -371,6 +373,16 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // clientSearchBox
+            // 
+            this.clientSearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.clientSearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.clientSearchBox.Location = new System.Drawing.Point(26, 24);
+            this.clientSearchBox.Name = "clientSearchBox";
+            this.clientSearchBox.Size = new System.Drawing.Size(243, 20);
+            this.clientSearchBox.TabIndex = 7;
+            this.clientSearchBox.TextChanged += new System.EventHandler(this.clientSearchBox_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,6 +435,7 @@
         private System.Windows.Forms.Button RemoveClientbutton;
         private System.Windows.Forms.Button AddCarButton;
         private System.Windows.Forms.Button AddExamplarButton;
+        private System.Windows.Forms.TextBox clientSearchBox;
     }
 }
 

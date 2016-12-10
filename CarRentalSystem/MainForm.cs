@@ -399,5 +399,26 @@ namespace CarRentalSystem
             }
             PopulateClientsTab();
         }
+
+        private void clientSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+            {
+                var results_client = (from client in context.Clients
+                                      where client.Person.Surname.Contains(clientSearchBox.Text) || client.Company.Title.Contains(clientSearchBox.Text)
+                                      select new
+                                      {
+                                          ID = client.ID,
+                                          Name = client.Person.Name,
+                                          Surname = client.Person.Surname,
+                                          Title = client.Company.Title,
+                                          PhoneNumber = client.Phone,
+                                          row = client.Person.Name + " " + client.Person.Surname + client.Company.Title
+                                      }).ToList();
+                ClientslistBox.DataSource = results_client;
+                ClientslistBox.DisplayMember = "row";
+            }
+            
+        }
     }
 }
