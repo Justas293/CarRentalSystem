@@ -62,28 +62,31 @@ namespace CarRentalSystem
             //client rents listbox
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {
-                ClientslistBox.ValueMember = "ID";
-                var results_rents = (from rent in context.Rents
-                                     where rent.ClientID == (int)ClientslistBox.SelectedValue
-                                     select new
-                                     {
-                                         Nr = rent.Nr,
-                                         ExamplarVIN = rent.ExamplarVIN,
-                                         Pick_up = rent.Pick_up,
-                                         Return = rent.Return,
-                                         FullRow = "VIN: "
-                                         + rent.ExamplarVIN + "       Date to pick up: "
-                                         + rent.Pick_up + " - "
-                                         + rent.Return
-                                     }).ToList();
+                if (ClientslistBox.Items.Count != 0 )
+                {
+                    ClientslistBox.ValueMember = "ID";
+                    var results_rents = (from rent in context.Rents
+                                         where rent.ClientID == (int)ClientslistBox.SelectedValue
+                                         select new
+                                         {
+                                             Nr = rent.Nr,
+                                             ExamplarVIN = rent.ExamplarVIN,
+                                             Pick_up = rent.Pick_up,
+                                             Return = rent.Return,
+                                             FullRow = "VIN: "
+                                             + rent.ExamplarVIN + "       Date to pick up: "
+                                             + rent.Pick_up + " - "
+                                             + rent.Return
+                                         }).ToList();
 
                     RentslistBox2.DataSource = results_rents;
                     RentslistBox2.DisplayMember = "FullRow";
                     RentslistBox2.ValueMember = "Nr";
-                
-                context.SaveChanges();
+
+                    context.SaveChanges();
+                }
             }
-        
+
         }
 
         private void PopulateEquipmentTab() //Entity framework
@@ -112,8 +115,8 @@ namespace CarRentalSystem
 
         private void PopulateExamplars()
         {
-            string query = "SELECT * FROM Examplar, Car "+
-                           "WHERE Examplar.CarID = Car.ID "+
+            string query = "SELECT * FROM Examplar, Car " +
+                           "WHERE Examplar.CarID = Car.ID " +
                            "AND Car.ID = @CarID";
             using (connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -131,9 +134,9 @@ namespace CarRentalSystem
                                    Year = row.Field<int>("Year"),
                                    Color = row.Field<string>("Color"),
                                    Fuel_cost = row.Field<decimal>("Fuel_cost"),
-                                   FullRow = "VIN: " 
-                                   + row.Field<string>("VIN") + "       Year: " 
-                                   + row.Field<int>("Year") + "     Color: " 
+                                   FullRow = "VIN: "
+                                   + row.Field<string>("VIN") + "       Year: "
+                                   + row.Field<int>("Year") + "     Color: "
                                    + row.Field<string>("Color") + "     "
                                    + row.Field<decimal>("Fuel_cost") + " l / 100km"
                                }).ToList();
@@ -141,7 +144,7 @@ namespace CarRentalSystem
                 Examplars_listBox.DataSource = results;
                 Examplars_listBox.DisplayMember = "FullRow";
                 Examplars_listBox.ValueMember = "VIN";
-               
+
             }
         }
 
@@ -154,14 +157,14 @@ namespace CarRentalSystem
             using (SqlCommand command = new SqlCommand(query, connection))
             using (SqlDataAdapter adapter = new SqlDataAdapter(command))
             {
-                
+                Examplars_listBox.ValueMember = "VIN";
                 if (!String.IsNullOrEmpty((string)Examplars_listBox.SelectedValue))
                 {
                     command.Parameters.AddWithValue("@ExamplarVIN", Examplars_listBox.SelectedValue);
 
                     DataTable rentTable = new DataTable();
                     adapter.Fill(rentTable);
-                    
+
                     var results = (from row in rentTable.AsEnumerable()
                                    select new
                                    {
@@ -173,11 +176,11 @@ namespace CarRentalSystem
                                        + row.Field<DateTime>("Pick-up") + " - "
                                        + row.Field<DateTime>("Return")
                                    }).ToList();
-                    
+
                     Rents_listBox.DataSource = results;
-                    }
+                }
                 Rents_listBox.DisplayMember = "FullRow";
-                Rents_listBox.ValueMember = "Nr";
+                //Rents_listBox.ValueMember = "Nr";
             }
         }
 
@@ -201,11 +204,11 @@ namespace CarRentalSystem
                     Equipment_listBox.DataSource = equipmentTable;
                 }
                 Equipment_listBox.DisplayMember = "Title";
-                Equipment_listBox.ValueMember = "ID";
+                //Equipment_listBox.ValueMember = "ID";
 
             }
         }
-            
+
         private void Cars_listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateExamplars();
@@ -242,14 +245,14 @@ namespace CarRentalSystem
         {
             string value = "";
 
-            if(Dialog.InputBox("Add new...", "Enter equipment name", ref value) == DialogResult.OK)
+            if (Dialog.InputBox("Add new...", "Enter equipment name", ref value) == DialogResult.OK)
             {
                 using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
                 {
                     context.Equipments.Add(new Equipment { Title = value });
                     context.SaveChanges();
                 }
-            }            
+            }
             PopulateEquipmentTab();
         }
 
@@ -278,7 +281,7 @@ namespace CarRentalSystem
                 }
             }
             PopulateEquipmentTab();
-            
+
         }
 
         private void FindEquipmentbutton_Click(object sender, EventArgs e)
@@ -328,7 +331,73 @@ namespace CarRentalSystem
                 PopulateRents();
                 PopulateClientsTab();
             }
-            else MessageBox.Show("Nepasirinkote egzemplioriaus!");            
+            else MessageBox.Show("Nepasirinkote egzemplioriaus!");
+        }
+
+        private void ReturnCarButton_Click(object sender, EventArgs e)
+        {
+            using (var context = new CarRentalSystemDatabaseEntities())
+            {
+                if (RentslistBox2.Items.Count != 0)
+                {
+                    string clientname;
+                    Rent rent = context.Rents.FirstOrDefault(x => x.Nr == (int)RentslistBox2.SelectedValue);
+                    int days = (rent.Return - rent.Pick_up).Days;
+
+                    Examplar examplar = context.Examplars.FirstOrDefault(ex => ex.VIN == rent.ExamplarVIN);
+                    Car car = context.Cars.FirstOrDefault(c => c.ID == examplar.CarID);
+                    Client client = context.Clients.FirstOrDefault(cl => cl.ID == (int)ClientslistBox.SelectedValue);
+                    Person person = context.People.FirstOrDefault(p => p.ID == client.ID);
+                    Company company = context.Companies.FirstOrDefault(com => com.ID == client.ID);
+                    int price = days * car.Price;
+                    if (company != null)
+                    {
+                        clientname = client.Company.Title;
+                    }
+                    else if (person != null)
+                    {
+                        clientname = client.Person.Name + " " + client.Person.Surname;
+                    }
+                    else clientname = "uknown";
+
+                    MessageBox.Show(clientname + Environment.NewLine +
+                                    "Car VIN: " + examplar.VIN + Environment.NewLine +
+                                    "Rent price: " + price.ToString() + "€");
+                    context.Rents.Remove(rent);
+
+                    if (client.Rents.FirstOrDefault() == null)
+                    {
+                        context.Clients.Remove(client);
+                        if (person != null) context.People.Remove(person);
+                        if (company != null) context.Companies.Remove(company);
+                    }
+                    context.SaveChanges();
+                }   
+            }
+            PopulateClientsTab();
+            PopulateClientRents();
+        }
+
+        private void RemoveClientbutton_Click(object sender, EventArgs e)
+        {
+            using (var context = new CarRentalSystemDatabaseEntities())
+            {
+                if (ClientslistBox.Items.Count != 0)
+                {
+                    Client client = context.Clients.FirstOrDefault(cl => cl.ID == (int)ClientslistBox.SelectedValue);
+                    Person person = context.People.FirstOrDefault(p => p.ID == client.ID);
+                    Company company = context.Companies.FirstOrDefault(com => com.ID == client.ID);
+                    if (client != null)
+                    {
+                        context.Clients.Remove(client);
+                        if (person != null) context.People.Remove(person);
+                        if (company != null) context.Companies.Remove(company);
+
+                        context.SaveChanges();
+                    }
+                }
+            }
+            PopulateClientsTab();
         }
     }
 }

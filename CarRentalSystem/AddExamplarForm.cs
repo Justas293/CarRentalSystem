@@ -31,7 +31,9 @@ namespace CarRentalSystem
                     Color = this.ColorTextBox.Text,
                     Fuel_cost = Decimal.Parse(this.FuelTextBox.Text)
                 });
-                context.SaveChanges();
+                var ex = context.Examplars.FirstOrDefault(x => x.VIN == this.VINtextBox.Text);
+
+                if(ex == null) context.SaveChanges();
             }
             this.Dispose();
         }
