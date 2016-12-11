@@ -43,6 +43,7 @@
             this.Infobutton = new System.Windows.Forms.Button();
             this.Rentbutton = new System.Windows.Forms.Button();
             this.ClientstabPage = new System.Windows.Forms.TabPage();
+            this.clientSearchBox = new System.Windows.Forms.TextBox();
             this.UpdateClientbutton = new System.Windows.Forms.Button();
             this.RemoveClientbutton = new System.Windows.Forms.Button();
             this.ReturnCarButton = new System.Windows.Forms.Button();
@@ -58,7 +59,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.AllEquipmentlistBox = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.clientSearchBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.MaintabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
@@ -199,6 +199,7 @@
             this.Infobutton.TabIndex = 9;
             this.Infobutton.Text = "More info...";
             this.Infobutton.UseVisualStyleBackColor = true;
+            this.Infobutton.Click += new System.EventHandler(this.Infobutton_Click);
             // 
             // Rentbutton
             // 
@@ -227,6 +228,16 @@
             this.ClientstabPage.TabIndex = 1;
             this.ClientstabPage.Text = "Clients";
             this.ClientstabPage.UseVisualStyleBackColor = true;
+            // 
+            // clientSearchBox
+            // 
+            this.clientSearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.clientSearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.clientSearchBox.Location = new System.Drawing.Point(26, 24);
+            this.clientSearchBox.Name = "clientSearchBox";
+            this.clientSearchBox.Size = new System.Drawing.Size(243, 20);
+            this.clientSearchBox.TabIndex = 7;
+            this.clientSearchBox.TextChanged += new System.EventHandler(this.clientSearchBox_TextChanged);
             // 
             // UpdateClientbutton
             // 
@@ -372,16 +383,6 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // clientSearchBox
-            // 
-            this.clientSearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.clientSearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.clientSearchBox.Location = new System.Drawing.Point(26, 24);
-            this.clientSearchBox.Name = "clientSearchBox";
-            this.clientSearchBox.Size = new System.Drawing.Size(243, 20);
-            this.clientSearchBox.TabIndex = 7;
-            this.clientSearchBox.TextChanged += new System.EventHandler(this.clientSearchBox_TextChanged);
             // 
             // MainForm
             // 

@@ -131,9 +131,9 @@ namespace CarRentalSystem
                                select new
                                {
                                    VIN = row.Field<String>("VIN"),
-                                   Year = row.Field<int>("Year"),
-                                   Color = row.Field<string>("Color"),
-                                   Fuel_cost = row.Field<decimal>("Fuel_cost"),
+                                   //Year = row.Field<int>("Year"),
+                                   //Color = row.Field<string>("Color"),
+                                   //Fuel_cost = row.Field<decimal>("Fuel_cost"),
                                    FullRow = "VIN: "
                                    + row.Field<string>("VIN") + "       Year: "
                                    + row.Field<int>("Year") + "     Color: "
@@ -419,6 +419,19 @@ namespace CarRentalSystem
                 ClientslistBox.DisplayMember = "row";
             }
             
+        }
+
+        private void Infobutton_Click(object sender, EventArgs e)
+        {
+            using (var context = new CarRentalSystemDatabaseEntities())
+            {
+                if (Cars_listBox.Items.Count != 0)
+                {
+                    Car car = context.Cars.FirstOrDefault(c => c.ID == (int)Cars_listBox.SelectedValue);
+                    MessageBox.Show("Car model: " + car.Title + " " + car.Body + " " + car.Class + Environment.NewLine +
+                                    "Price: " + car.Price + " €/day", "Info...");
+                }
+            }
         }
     }
 }
