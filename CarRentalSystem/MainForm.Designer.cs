@@ -68,6 +68,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.topClientsListBox = new System.Windows.Forms.ListBox();
             this.removeExamplarButton = new System.Windows.Forms.Button();
+            this.updatePriceButton = new System.Windows.Forms.Button();
+            this.resetButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.MaintabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
@@ -160,6 +162,8 @@
             // 
             // MaintabPage
             // 
+            this.MaintabPage.Controls.Add(this.resetButton);
+            this.MaintabPage.Controls.Add(this.updatePriceButton);
             this.MaintabPage.Controls.Add(this.removeExamplarButton);
             this.MaintabPage.Controls.Add(this.label4);
             this.MaintabPage.Controls.Add(this.label3);
@@ -435,6 +439,7 @@
             this.classComboBox.Name = "classComboBox";
             this.classComboBox.Size = new System.Drawing.Size(121, 21);
             this.classComboBox.TabIndex = 12;
+            this.classComboBox.SelectedIndexChanged += new System.EventHandler(this.classComboBox_SelectedIndexChanged);
             // 
             // bodyComboBox
             // 
@@ -443,6 +448,7 @@
             this.bodyComboBox.Name = "bodyComboBox";
             this.bodyComboBox.Size = new System.Drawing.Size(121, 21);
             this.bodyComboBox.TabIndex = 13;
+            this.bodyComboBox.SelectedIndexChanged += new System.EventHandler(this.bodyComboBox_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -479,6 +485,26 @@
             this.removeExamplarButton.Text = "Remove examplar...";
             this.removeExamplarButton.UseVisualStyleBackColor = true;
             this.removeExamplarButton.Click += new System.EventHandler(this.removeExamplarButton_Click);
+            // 
+            // updatePriceButton
+            // 
+            this.updatePriceButton.Location = new System.Drawing.Point(230, 344);
+            this.updatePriceButton.Name = "updatePriceButton";
+            this.updatePriceButton.Size = new System.Drawing.Size(131, 41);
+            this.updatePriceButton.TabIndex = 17;
+            this.updatePriceButton.Text = "Update price...";
+            this.updatePriceButton.UseVisualStyleBackColor = true;
+            this.updatePriceButton.Click += new System.EventHandler(this.updatePriceButton_Click);
+            // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(187, 9);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(75, 37);
+            this.resetButton.TabIndex = 18;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // MainForm
             // 
@@ -542,6 +568,8 @@
         private System.Windows.Forms.ComboBox classComboBox;
         private System.Windows.Forms.ListBox topClientsListBox;
         private System.Windows.Forms.Button removeExamplarButton;
+        private System.Windows.Forms.Button updatePriceButton;
+        private System.Windows.Forms.Button resetButton;
     }
 }
 

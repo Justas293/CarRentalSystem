@@ -23,7 +23,7 @@ namespace CarRentalSystem
             this.connectionString = connectionstr;
         }
 
-        private void AddExamplarButton_Click(object sender, EventArgs e)
+        private void AddExamplarButton_Click(object sender, EventArgs e) //normal INSERT
         {
             /*
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())

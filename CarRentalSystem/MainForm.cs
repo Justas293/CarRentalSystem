@@ -35,7 +35,7 @@ namespace CarRentalSystem
             PopulateTopClients();
         }
 
-        private void PopulateTopClients()
+        private void PopulateTopClients() //LINQ Join , Group by
         {
             using (var context = new CarRentalSystemDatabaseEntities())
             {
@@ -50,7 +50,7 @@ namespace CarRentalSystem
             }
         }
 
-        private void PopulateClientsTab()
+        private void PopulateClientsTab() //Entity READ
         {
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {
@@ -73,7 +73,7 @@ namespace CarRentalSystem
             }
         }
 
-        private void PopulateClientRents()
+        private void PopulateClientRents() //Entity READ
         {
             //client rents listbox
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
@@ -128,7 +128,7 @@ namespace CarRentalSystem
             }
         }
 
-        private void PopulateCars()
+        private void PopulateCars() //DataTable DataAdapter READ
         {
             using (connection = new SqlConnection(connectionString))
             using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Car", connectionString))
@@ -139,10 +139,18 @@ namespace CarRentalSystem
                 Cars_listBox.DisplayMember = "Title";
                 Cars_listBox.ValueMember = "ID";
                 Cars_listBox.DataSource = carTable;
+
+                classComboBox.Items.AddRange(carTable.AsEnumerable().Select(i => i.ItemArray[2]).Distinct().ToArray());
+                classComboBox.DisplayMember = "Class";
+                classComboBox.ValueMember = "Class";
+
+                bodyComboBox.Items.AddRange(carTable.AsEnumerable().Select(i => i.ItemArray[3]).Distinct().ToArray());
+                bodyComboBox.DisplayMember = "Body";
+                bodyComboBox.ValueMember = "Body";
             }
         }
 
-        private void PopulateExamplars()
+        private void PopulateExamplars() 
         {
             string query = "SELECT * FROM Examplar, Car " +
                            "WHERE Examplar.CarID = Car.ID " +
@@ -270,7 +278,7 @@ namespace CarRentalSystem
 
         }
 
-        private void AddNewEquipmentbutton_Click(object sender, EventArgs e)
+        private void AddNewEquipmentbutton_Click(object sender, EventArgs e) //Entity INSERT
         {
             string value = "";
 
@@ -288,7 +296,7 @@ namespace CarRentalSystem
             PopulateEquipmentTab();
         }
 
-        private void RemoveEquipmentbutton_Click(object sender, EventArgs e)
+        private void RemoveEquipmentbutton_Click(object sender, EventArgs e) //entity DELETE
         {
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {
@@ -300,8 +308,9 @@ namespace CarRentalSystem
             PopulateEquipmentTab();
         }
 
-        private void UpdateEquipmentbutton_Click(object sender, EventArgs e)
+        private void UpdateEquipmentbutton_Click(object sender, EventArgs e) //entity UPDATE
         {
+            
             string value = "";
             if (Dialog.InputBox("Update...", "Enter new name", ref value) == DialogResult.OK)
             {
@@ -496,7 +505,7 @@ namespace CarRentalSystem
             }
         }
 
-        private void removeExamplarButton_Click(object sender, EventArgs e)
+        private void removeExamplarButton_Click(object sender, EventArgs e) //DataAdapter DELETE
         {
             if (Examplars_listBox.Items.Count != 0 && Equipment_listBox.Items.Count == 0 && Rents_listBox.Items.Count == 0)
             {
@@ -513,6 +522,67 @@ namespace CarRentalSystem
                 }
                 PopulateExamplars();
             }
+        }
+
+        private void updatePriceButton_Click(object sender, EventArgs e) //DataAdapter UPDATE
+        {
+            string value = "";
+            string query = "UPDATE Car SET Price = @Price WHERE Id = @CarID";
+            if (Dialog.InputBox("Update...", "Enter new price", ref value) == DialogResult.OK)
+            {
+                using (connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@Price", int.Parse(value));
+                    command.Parameters.AddWithValue("@CarID", (int)Cars_listBox.SelectedValue);
+                    command.ExecuteScalar();
+                }
+            }
+            PopulateCars();
+        }
+
+        private void classComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string query = "SELECT * FROM Car WHERE Class = @Class AND Body = @Body";
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Class", classComboBox.Text);
+                command.Parameters.AddWithValue("@Body", bodyComboBox.Text);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                Cars_listBox.DisplayMember = "Title";
+                Cars_listBox.ValueMember = "ID";
+                Cars_listBox.DataSource = dt;
+            }
+        }
+
+        private void bodyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string query = "SELECT * FROM Car WHERE Body = @Body AND Class = @Class";
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Body", bodyComboBox.Text);
+                command.Parameters.AddWithValue("@Class", classComboBox.Text);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                Cars_listBox.DisplayMember = "Title";
+                Cars_listBox.ValueMember = "ID";
+                Cars_listBox.DataSource = dt;
+            }
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            classComboBox.SelectedIndex = -1;
+            bodyComboBox.SelectedIndex = -1;
+            PopulateCars();
         }
     }
 }
