@@ -40,14 +40,21 @@ namespace CarRentalSystem
                 };
                 using (CarRentalSystemDatabaseEntities c = new CarRentalSystemDatabaseEntities())
                 {
-                    c.Clients.Add(client);
-                    c.Companies.Add(company);
+                    int companyid;
+                    var checkCompany = c.Clients.FirstOrDefault(z => z.Company.Title == companyName && z.Company.Code == companyCodeTextBox.Text);
+                    if (checkCompany == null)
+                    {
+                        c.Clients.Add(client);
+                        c.Companies.Add(company);
+                    }
+                    if (checkCompany != null) companyid = checkCompany.ID;
+                    else companyid = client.ID;
                     c.Rents.Add(new Rent
                     {
                         ExamplarVIN = examplarVIN,
                         Pick_up = DateTime.Parse(dateTimePicker1.Text),
                         Return = DateTime.Parse(dateTimePicker2.Text),
-                        ClientID = client.ID
+                        ClientID = companyid
                     });
                     c.SaveChanges();
                 }
@@ -56,6 +63,7 @@ namespace CarRentalSystem
             if(radioButtonIndividual.Checked)
             {
                 string[] fullName = RentCarNameTextBox.Text.Split(' ');
+                
                 Client client = new Client
                 {
                     Address = AddresstextBox.Text,
@@ -70,15 +78,23 @@ namespace CarRentalSystem
                 };
                 using (CarRentalSystemDatabaseEntities c = new CarRentalSystemDatabaseEntities())
                 {
-
-                    c.Clients.Add(client);
-                    c.People.Add(individual);
+                    int cl_ID;
+                    string surName = fullName[1];
+                    string name = fullName[0];
+                    var checkclient = c.Clients.FirstOrDefault(x => x.Person.Surname == surName && x.Person.Name == name);
+                    if (checkclient != null) cl_ID = checkclient.ID;
+                    else cl_ID = client.ID;
+                    if (checkclient == null)
+                    {
+                        c.Clients.Add(client);
+                        c.People.Add(individual);
+                    }
                     c.Rents.Add(new Rent
                     {
                         ExamplarVIN = examplarVIN,
                         Pick_up = DateTime.Parse(dateTimePicker1.Text),
                         Return = DateTime.Parse(dateTimePicker2.Text),
-                        ClientID = client.ID
+                        ClientID = cl_ID
                     });
                     c.SaveChanges();
                 }
