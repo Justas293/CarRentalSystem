@@ -70,6 +70,7 @@ namespace CarRentalSystem
                 };
                 using (CarRentalSystemDatabaseEntities c = new CarRentalSystemDatabaseEntities())
                 {
+
                     c.Clients.Add(client);
                     c.People.Add(individual);
                     c.Rents.Add(new Rent

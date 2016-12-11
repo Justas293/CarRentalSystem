@@ -52,6 +52,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ClientslistBox = new System.Windows.Forms.ListBox();
             this.EquipmenttabPage = new System.Windows.Forms.TabPage();
+            this.examplarSearchBox = new System.Windows.Forms.TextBox();
+            this.addEquipmentToExamplarButton = new System.Windows.Forms.Button();
+            this.EquipmentExamplarListBox = new System.Windows.Forms.ListBox();
             this.FindEquipmentbutton = new System.Windows.Forms.Button();
             this.UpdateEquipmentbutton = new System.Windows.Forms.Button();
             this.RemoveEquipmentbutton = new System.Windows.Forms.Button();
@@ -59,9 +62,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.AllEquipmentlistBox = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.EquipmentExamplarListBox = new System.Windows.Forms.ListBox();
-            this.addEquipmentToExamplarButton = new System.Windows.Forms.Button();
-            this.examplarSearchBox = new System.Windows.Forms.TextBox();
+            this.classComboBox = new System.Windows.Forms.ComboBox();
+            this.bodyComboBox = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.topClientsListBox = new System.Windows.Forms.ListBox();
+            this.removeExamplarButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.MaintabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
@@ -71,7 +77,7 @@
             // labelCars
             // 
             this.labelCars.AutoSize = true;
-            this.labelCars.Location = new System.Drawing.Point(9, 3);
+            this.labelCars.Location = new System.Drawing.Point(11, 66);
             this.labelCars.Name = "labelCars";
             this.labelCars.Size = new System.Drawing.Size(28, 13);
             this.labelCars.TabIndex = 0;
@@ -80,7 +86,7 @@
             // Examplars_label
             // 
             this.Examplars_label.AutoSize = true;
-            this.Examplars_label.Location = new System.Drawing.Point(227, 3);
+            this.Examplars_label.Location = new System.Drawing.Point(227, 66);
             this.Examplars_label.Name = "Examplars_label";
             this.Examplars_label.Size = new System.Drawing.Size(55, 13);
             this.Examplars_label.TabIndex = 1;
@@ -89,7 +95,7 @@
             // Rents_label
             // 
             this.Rents_label.AutoSize = true;
-            this.Rents_label.Location = new System.Drawing.Point(227, 104);
+            this.Rents_label.Location = new System.Drawing.Point(227, 167);
             this.Rents_label.Name = "Rents_label";
             this.Rents_label.Size = new System.Drawing.Size(35, 13);
             this.Rents_label.TabIndex = 2;
@@ -98,7 +104,7 @@
             // Equipment_label
             // 
             this.Equipment_label.AutoSize = true;
-            this.Equipment_label.Location = new System.Drawing.Point(9, 104);
+            this.Equipment_label.Location = new System.Drawing.Point(11, 167);
             this.Equipment_label.Name = "Equipment_label";
             this.Equipment_label.Size = new System.Drawing.Size(57, 13);
             this.Equipment_label.TabIndex = 3;
@@ -108,16 +114,16 @@
             // Cars_listBox
             // 
             this.Cars_listBox.FormattingEnabled = true;
-            this.Cars_listBox.Location = new System.Drawing.Point(12, 19);
+            this.Cars_listBox.Location = new System.Drawing.Point(9, 82);
             this.Cars_listBox.Name = "Cars_listBox";
-            this.Cars_listBox.Size = new System.Drawing.Size(214, 82);
+            this.Cars_listBox.Size = new System.Drawing.Size(212, 82);
             this.Cars_listBox.TabIndex = 4;
             this.Cars_listBox.SelectedIndexChanged += new System.EventHandler(this.Cars_listBox_SelectedIndexChanged);
             // 
             // Examplars_listBox
             // 
             this.Examplars_listBox.FormattingEnabled = true;
-            this.Examplars_listBox.Location = new System.Drawing.Point(230, 19);
+            this.Examplars_listBox.Location = new System.Drawing.Point(229, 82);
             this.Examplars_listBox.Name = "Examplars_listBox";
             this.Examplars_listBox.Size = new System.Drawing.Size(479, 82);
             this.Examplars_listBox.TabIndex = 5;
@@ -126,7 +132,7 @@
             // Rents_listBox
             // 
             this.Rents_listBox.FormattingEnabled = true;
-            this.Rents_listBox.Location = new System.Drawing.Point(230, 120);
+            this.Rents_listBox.Location = new System.Drawing.Point(227, 183);
             this.Rents_listBox.Name = "Rents_listBox";
             this.Rents_listBox.Size = new System.Drawing.Size(479, 95);
             this.Rents_listBox.TabIndex = 6;
@@ -135,7 +141,7 @@
             // Equipment_listBox
             // 
             this.Equipment_listBox.FormattingEnabled = true;
-            this.Equipment_listBox.Location = new System.Drawing.Point(12, 120);
+            this.Equipment_listBox.Location = new System.Drawing.Point(9, 183);
             this.Equipment_listBox.Name = "Equipment_listBox";
             this.Equipment_listBox.Size = new System.Drawing.Size(212, 95);
             this.Equipment_listBox.TabIndex = 7;
@@ -154,6 +160,11 @@
             // 
             // MaintabPage
             // 
+            this.MaintabPage.Controls.Add(this.removeExamplarButton);
+            this.MaintabPage.Controls.Add(this.label4);
+            this.MaintabPage.Controls.Add(this.label3);
+            this.MaintabPage.Controls.Add(this.bodyComboBox);
+            this.MaintabPage.Controls.Add(this.classComboBox);
             this.MaintabPage.Controls.Add(this.AddExamplarButton);
             this.MaintabPage.Controls.Add(this.AddCarButton);
             this.MaintabPage.Controls.Add(this.Infobutton);
@@ -176,9 +187,9 @@
             // 
             // AddExamplarButton
             // 
-            this.AddExamplarButton.Location = new System.Drawing.Point(14, 406);
+            this.AddExamplarButton.Location = new System.Drawing.Point(12, 406);
             this.AddExamplarButton.Name = "AddExamplarButton";
-            this.AddExamplarButton.Size = new System.Drawing.Size(209, 42);
+            this.AddExamplarButton.Size = new System.Drawing.Size(212, 42);
             this.AddExamplarButton.TabIndex = 11;
             this.AddExamplarButton.Text = "Add examplar...";
             this.AddExamplarButton.UseVisualStyleBackColor = true;
@@ -186,7 +197,7 @@
             // 
             // AddCarButton
             // 
-            this.AddCarButton.Location = new System.Drawing.Point(12, 350);
+            this.AddCarButton.Location = new System.Drawing.Point(11, 344);
             this.AddCarButton.Name = "AddCarButton";
             this.AddCarButton.Size = new System.Drawing.Size(213, 41);
             this.AddCarButton.TabIndex = 10;
@@ -196,9 +207,9 @@
             // 
             // Infobutton
             // 
-            this.Infobutton.Location = new System.Drawing.Point(230, 239);
+            this.Infobutton.Location = new System.Drawing.Point(229, 284);
             this.Infobutton.Name = "Infobutton";
-            this.Infobutton.Size = new System.Drawing.Size(101, 38);
+            this.Infobutton.Size = new System.Drawing.Size(132, 38);
             this.Infobutton.TabIndex = 9;
             this.Infobutton.Text = "More info...";
             this.Infobutton.UseVisualStyleBackColor = true;
@@ -206,7 +217,7 @@
             // 
             // Rentbutton
             // 
-            this.Rentbutton.Location = new System.Drawing.Point(12, 239);
+            this.Rentbutton.Location = new System.Drawing.Point(11, 284);
             this.Rentbutton.Name = "Rentbutton";
             this.Rentbutton.Size = new System.Drawing.Size(212, 38);
             this.Rentbutton.TabIndex = 8;
@@ -216,6 +227,7 @@
             // 
             // ClientstabPage
             // 
+            this.ClientstabPage.Controls.Add(this.topClientsListBox);
             this.ClientstabPage.Controls.Add(this.clientSearchBox);
             this.ClientstabPage.Controls.Add(this.UpdateClientbutton);
             this.ClientstabPage.Controls.Add(this.RemoveClientbutton);
@@ -324,6 +336,32 @@
             this.EquipmenttabPage.Text = "Equipment";
             this.EquipmenttabPage.UseVisualStyleBackColor = true;
             // 
+            // examplarSearchBox
+            // 
+            this.examplarSearchBox.Location = new System.Drawing.Point(440, 273);
+            this.examplarSearchBox.Name = "examplarSearchBox";
+            this.examplarSearchBox.Size = new System.Drawing.Size(239, 20);
+            this.examplarSearchBox.TabIndex = 8;
+            this.examplarSearchBox.TextChanged += new System.EventHandler(this.examplarSearchBox_TextChanged);
+            // 
+            // addEquipmentToExamplarButton
+            // 
+            this.addEquipmentToExamplarButton.Location = new System.Drawing.Point(440, 299);
+            this.addEquipmentToExamplarButton.Name = "addEquipmentToExamplarButton";
+            this.addEquipmentToExamplarButton.Size = new System.Drawing.Size(151, 31);
+            this.addEquipmentToExamplarButton.TabIndex = 7;
+            this.addEquipmentToExamplarButton.Text = "Add equipment...";
+            this.addEquipmentToExamplarButton.UseVisualStyleBackColor = true;
+            this.addEquipmentToExamplarButton.Click += new System.EventHandler(this.addEquipmentToExamplarButton_Click);
+            // 
+            // EquipmentExamplarListBox
+            // 
+            this.EquipmentExamplarListBox.FormattingEnabled = true;
+            this.EquipmentExamplarListBox.Location = new System.Drawing.Point(17, 273);
+            this.EquipmentExamplarListBox.Name = "EquipmentExamplarListBox";
+            this.EquipmentExamplarListBox.Size = new System.Drawing.Size(417, 121);
+            this.EquipmentExamplarListBox.TabIndex = 6;
+            // 
             // FindEquipmentbutton
             // 
             this.FindEquipmentbutton.Location = new System.Drawing.Point(465, 31);
@@ -390,31 +428,57 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // EquipmentExamplarListBox
+            // classComboBox
             // 
-            this.EquipmentExamplarListBox.FormattingEnabled = true;
-            this.EquipmentExamplarListBox.Location = new System.Drawing.Point(17, 273);
-            this.EquipmentExamplarListBox.Name = "EquipmentExamplarListBox";
-            this.EquipmentExamplarListBox.Size = new System.Drawing.Size(417, 121);
-            this.EquipmentExamplarListBox.TabIndex = 6;
+            this.classComboBox.FormattingEnabled = true;
+            this.classComboBox.Location = new System.Drawing.Point(47, 6);
+            this.classComboBox.Name = "classComboBox";
+            this.classComboBox.Size = new System.Drawing.Size(121, 21);
+            this.classComboBox.TabIndex = 12;
             // 
-            // addEquipmentToExamplarButton
+            // bodyComboBox
             // 
-            this.addEquipmentToExamplarButton.Location = new System.Drawing.Point(440, 299);
-            this.addEquipmentToExamplarButton.Name = "addEquipmentToExamplarButton";
-            this.addEquipmentToExamplarButton.Size = new System.Drawing.Size(151, 31);
-            this.addEquipmentToExamplarButton.TabIndex = 7;
-            this.addEquipmentToExamplarButton.Text = "Add equipment...";
-            this.addEquipmentToExamplarButton.UseVisualStyleBackColor = true;
-            this.addEquipmentToExamplarButton.Click += new System.EventHandler(this.addEquipmentToExamplarButton_Click);
+            this.bodyComboBox.FormattingEnabled = true;
+            this.bodyComboBox.Location = new System.Drawing.Point(47, 33);
+            this.bodyComboBox.Name = "bodyComboBox";
+            this.bodyComboBox.Size = new System.Drawing.Size(121, 21);
+            this.bodyComboBox.TabIndex = 13;
             // 
-            // examplarSearchBox
+            // label3
             // 
-            this.examplarSearchBox.Location = new System.Drawing.Point(440, 273);
-            this.examplarSearchBox.Name = "examplarSearchBox";
-            this.examplarSearchBox.Size = new System.Drawing.Size(239, 20);
-            this.examplarSearchBox.TabIndex = 8;
-            this.examplarSearchBox.TextChanged += new System.EventHandler(this.examplarSearchBox_TextChanged);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Class";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Body";
+            // 
+            // topClientsListBox
+            // 
+            this.topClientsListBox.FormattingEnabled = true;
+            this.topClientsListBox.Location = new System.Drawing.Point(26, 306);
+            this.topClientsListBox.Name = "topClientsListBox";
+            this.topClientsListBox.Size = new System.Drawing.Size(240, 82);
+            this.topClientsListBox.TabIndex = 8;
+            // 
+            // removeExamplarButton
+            // 
+            this.removeExamplarButton.Location = new System.Drawing.Point(230, 406);
+            this.removeExamplarButton.Name = "removeExamplarButton";
+            this.removeExamplarButton.Size = new System.Drawing.Size(131, 42);
+            this.removeExamplarButton.TabIndex = 16;
+            this.removeExamplarButton.Text = "Remove examplar...";
+            this.removeExamplarButton.UseVisualStyleBackColor = true;
+            this.removeExamplarButton.Click += new System.EventHandler(this.removeExamplarButton_Click);
             // 
             // MainForm
             // 
@@ -472,6 +536,12 @@
         private System.Windows.Forms.Button addEquipmentToExamplarButton;
         private System.Windows.Forms.ListBox EquipmentExamplarListBox;
         private System.Windows.Forms.TextBox examplarSearchBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox bodyComboBox;
+        private System.Windows.Forms.ComboBox classComboBox;
+        private System.Windows.Forms.ListBox topClientsListBox;
+        private System.Windows.Forms.Button removeExamplarButton;
     }
 }
 

@@ -32,6 +32,22 @@ namespace CarRentalSystem
             PopulateEquipmentTab();
             PopulateClientsTab();
             PopulateClientRents();
+            PopulateTopClients();
+        }
+
+        private void PopulateTopClients()
+        {
+            using (var context = new CarRentalSystemDatabaseEntities())
+            {
+                var results = (from c in context.Clients
+                              join r in context.Rents on c.ID equals r.ClientID
+                              group r by c into grp
+                              let numberOfRents = grp.Count()
+                              orderby numberOfRents descending
+                              select new { row = grp.Key.Person.Name + " " + grp.Key.Person.Surname + grp.Key.Company.Title + " Number of rents: " + numberOfRents}).ToList();
+                topClientsListBox.DataSource = results;
+                topClientsListBox.DisplayMember = "row";
+            }
         }
 
         private void PopulateClientsTab()
@@ -326,7 +342,7 @@ namespace CarRentalSystem
         private void AddExamplarButton_Click(object sender, EventArgs e)
         {
             Cars_listBox.ValueMember = "ID";
-            using (AddExamplarForm addexamplarform = new AddExamplarForm((int)Cars_listBox.SelectedValue))
+            using (AddExamplarForm addexamplarform = new AddExamplarForm((int)Cars_listBox.SelectedValue, connectionString))
             {
                 addexamplarform.ShowDialog();
             }
@@ -476,6 +492,25 @@ namespace CarRentalSystem
                 EquipmentExamplarListBox.DataSource = carExamplars;
                 EquipmentExamplarListBox.DisplayMember = "Row";
                 EquipmentExamplarListBox.ValueMember = "Vin";
+            }
+        }
+
+        private void removeExamplarButton_Click(object sender, EventArgs e)
+        {
+            if (Examplars_listBox.Items.Count != 0 && Equipment_listBox.Items.Count == 0 && Rents_listBox.Items.Count == 0)
+            {
+                string query = "DELETE Examplar WHERE VIN = @ExamplarVIN";
+                using (connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using(SqlDataAdapter adapter = new SqlDataAdapter())
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@ExamplarVIN", (string)Examplars_listBox.SelectedValue);
+                    adapter.DeleteCommand = command;
+                    adapter.DeleteCommand.ExecuteNonQuery();
+                    //command.ExecuteScalar();
+                }
+                PopulateExamplars();
             }
         }
     }

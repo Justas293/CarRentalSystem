@@ -7,20 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace CarRentalSystem
 {
     public partial class AddExamplarForm : Form
     {
         int carid;
-        public AddExamplarForm(int carid)
+        SqlConnection connection;
+        string connectionString;
+        public AddExamplarForm(int carid, string connectionstr)
         {
             InitializeComponent();
             this.carid = carid;
+            this.connectionString = connectionstr;
         }
 
         private void AddExamplarButton_Click(object sender, EventArgs e)
         {
+            /*
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {
                 context.Examplars.Add(new Examplar
@@ -34,6 +39,20 @@ namespace CarRentalSystem
                 var ex = context.Examplars.FirstOrDefault(x => x.VIN == this.VINtextBox.Text);
 
                 if(ex == null) context.SaveChanges();
+            }
+            */
+            string query = "INSERT INTO Examplar(VIN, CarID, Year, Color, Fuel_cost) VALUES(@VIN, @CarID, @Year, @Color, @Fuel_cost)";
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@VIN", this.VINtextBox.Text);
+                command.Parameters.AddWithValue("@CarID", this.carid);
+                command.Parameters.AddWithValue("@Year", Int32.Parse(this.YearTextBox.Text));
+                command.Parameters.AddWithValue("@Color", this.ColorTextBox.Text);
+                command.Parameters.AddWithValue("@Fuel_cost", decimal.Parse(this.FuelTextBox.Text));
+
+                command.ExecuteScalar();
             }
             this.Dispose();
         }
