@@ -89,13 +89,26 @@ namespace CarRentalSystem
 
         }
 
-        private void PopulateEquipmentTab() //Entity framework
+        private void PopulateEquipmentTab() //Entity framework //LINQ join
         {
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {
                 AllEquipmentlistBox.DataSource = context.Equipments.ToList();
                 AllEquipmentlistBox.DisplayMember = "Title";
                 AllEquipmentlistBox.ValueMember = "ID";
+
+                List<Examplar> examplars = context.Examplars.ToList();
+                List<Car> cars = context.Cars.ToList();
+                var carExamplars = (from examp in context.Examplars
+                                    join car in context.Cars on examp.CarID equals car.ID
+                                    select new
+                                    {
+                                        Vin = examp.VIN,
+                                        Row = car.Title + " VIN: " + examp.VIN
+                                   }).ToList();
+                EquipmentExamplarListBox.DataSource = carExamplars;
+                EquipmentExamplarListBox.DisplayMember = "Row";
+                EquipmentExamplarListBox.ValueMember = "Vin";
             }
         }
 
@@ -247,10 +260,13 @@ namespace CarRentalSystem
 
             if (Dialog.InputBox("Add new...", "Enter equipment name", ref value) == DialogResult.OK)
             {
-                using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+                if (!string.IsNullOrWhiteSpace(value))
                 {
-                    context.Equipments.Add(new Equipment { Title = value });
-                    context.SaveChanges();
+                    using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+                    {
+                        context.Equipments.Add(new Equipment { Title = value });
+                        context.SaveChanges();
+                    }
                 }
             }
             PopulateEquipmentTab();
@@ -431,6 +447,35 @@ namespace CarRentalSystem
                     MessageBox.Show("Car model: " + car.Title + " " + car.Body + " " + car.Class + Environment.NewLine +
                                     "Price: " + car.Price + " €/day", "Info...");
                 }
+            }
+        }
+
+        private void addEquipmentToExamplarButton_Click(object sender, EventArgs e)
+        {
+            using(var context = new CarRentalSystemDatabaseEntities())
+            {
+                Equipment eq = context.Equipments.FirstOrDefault(x => x.ID == (int)AllEquipmentlistBox.SelectedValue);
+                Examplar examp = context.Examplars.FirstOrDefault(y => y.VIN == (string)EquipmentExamplarListBox.SelectedValue);
+                examp.Equipments.Add(eq);
+                context.SaveChanges();
+            }
+        }
+
+        private void examplarSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+            {
+                var carExamplars = (from examp in context.Examplars
+                                    join car in context.Cars on examp.CarID equals car.ID
+                                    where car.Title.Contains(examplarSearchBox.Text)
+                                    select new
+                                    {
+                                        Vin = examp.VIN,
+                                        Row = car.Title + " VIN: " + examp.VIN
+                                    }).ToList();
+                EquipmentExamplarListBox.DataSource = carExamplars;
+                EquipmentExamplarListBox.DisplayMember = "Row";
+                EquipmentExamplarListBox.ValueMember = "Vin";
             }
         }
     }

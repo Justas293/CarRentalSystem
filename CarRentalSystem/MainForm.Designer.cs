@@ -59,6 +59,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.AllEquipmentlistBox = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.EquipmentExamplarListBox = new System.Windows.Forms.ListBox();
+            this.addEquipmentToExamplarButton = new System.Windows.Forms.Button();
+            this.examplarSearchBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.MaintabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
@@ -305,6 +308,9 @@
             // 
             // EquipmenttabPage
             // 
+            this.EquipmenttabPage.Controls.Add(this.examplarSearchBox);
+            this.EquipmenttabPage.Controls.Add(this.addEquipmentToExamplarButton);
+            this.EquipmenttabPage.Controls.Add(this.EquipmentExamplarListBox);
             this.EquipmenttabPage.Controls.Add(this.FindEquipmentbutton);
             this.EquipmenttabPage.Controls.Add(this.UpdateEquipmentbutton);
             this.EquipmenttabPage.Controls.Add(this.RemoveEquipmentbutton);
@@ -372,7 +378,7 @@
             this.AllEquipmentlistBox.FormattingEnabled = true;
             this.AllEquipmentlistBox.Location = new System.Drawing.Point(17, 31);
             this.AllEquipmentlistBox.Name = "AllEquipmentlistBox";
-            this.AllEquipmentlistBox.Size = new System.Drawing.Size(260, 446);
+            this.AllEquipmentlistBox.Size = new System.Drawing.Size(260, 212);
             this.AllEquipmentlistBox.TabIndex = 0;
             // 
             // tabPage3
@@ -383,6 +389,32 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // EquipmentExamplarListBox
+            // 
+            this.EquipmentExamplarListBox.FormattingEnabled = true;
+            this.EquipmentExamplarListBox.Location = new System.Drawing.Point(17, 273);
+            this.EquipmentExamplarListBox.Name = "EquipmentExamplarListBox";
+            this.EquipmentExamplarListBox.Size = new System.Drawing.Size(417, 121);
+            this.EquipmentExamplarListBox.TabIndex = 6;
+            // 
+            // addEquipmentToExamplarButton
+            // 
+            this.addEquipmentToExamplarButton.Location = new System.Drawing.Point(440, 299);
+            this.addEquipmentToExamplarButton.Name = "addEquipmentToExamplarButton";
+            this.addEquipmentToExamplarButton.Size = new System.Drawing.Size(151, 31);
+            this.addEquipmentToExamplarButton.TabIndex = 7;
+            this.addEquipmentToExamplarButton.Text = "Add equipment...";
+            this.addEquipmentToExamplarButton.UseVisualStyleBackColor = true;
+            this.addEquipmentToExamplarButton.Click += new System.EventHandler(this.addEquipmentToExamplarButton_Click);
+            // 
+            // examplarSearchBox
+            // 
+            this.examplarSearchBox.Location = new System.Drawing.Point(440, 273);
+            this.examplarSearchBox.Name = "examplarSearchBox";
+            this.examplarSearchBox.Size = new System.Drawing.Size(239, 20);
+            this.examplarSearchBox.TabIndex = 8;
+            this.examplarSearchBox.TextChanged += new System.EventHandler(this.examplarSearchBox_TextChanged);
             // 
             // MainForm
             // 
@@ -437,6 +469,9 @@
         private System.Windows.Forms.Button AddCarButton;
         private System.Windows.Forms.Button AddExamplarButton;
         private System.Windows.Forms.TextBox clientSearchBox;
+        private System.Windows.Forms.Button addEquipmentToExamplarButton;
+        private System.Windows.Forms.ListBox EquipmentExamplarListBox;
+        private System.Windows.Forms.TextBox examplarSearchBox;
     }
 }
 
