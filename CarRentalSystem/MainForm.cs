@@ -105,7 +105,7 @@ namespace CarRentalSystem
 
         }
 
-        private void PopulateEquipmentTab() //Entity framework //LINQ join
+        private void PopulateEquipmentTab() //Entity READ //LINQ join
         {
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {

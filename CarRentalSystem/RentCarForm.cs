@@ -18,6 +18,23 @@ namespace CarRentalSystem
         {
             InitializeComponent();
             examplarVIN = vin;
+            using (var context = new CarRentalSystemDatabaseEntities()) {
+                if (radioButtonCompany.Checked)
+                {
+                    clientsComboBox.DataSource = context.Companies.ToList();
+                    clientsComboBox.DisplayMember = "Title";
+                    clientsComboBox.ValueMember = "ID";
+                    clientsComboBox.SelectedIndex = -1;
+                }
+                if (radioButtonIndividual.Checked)
+                {
+                    var result = context.People.AsEnumerable().Select(p => new {Name = p.Name + " " + p.Surname, Id = p.ID }).ToList();
+                    clientsComboBox.DataSource = result;
+                    clientsComboBox.DisplayMember = "Name";
+                    clientsComboBox.ValueMember = "Id";
+                    clientsComboBox.SelectedIndex = -1;
+                }
+            }
         }
 
        
@@ -176,6 +193,52 @@ namespace CarRentalSystem
                 errorProvider1.SetError(AddresstextBox, "Please enter client address!");
             }
             else errorProvider1.SetError(AddresstextBox, null);
+        }
+
+        private void radioButtonIndividual_CheckedChanged(object sender, EventArgs e)
+        {
+            using (var context = new CarRentalSystemDatabaseEntities())
+            {
+                if (radioButtonCompany.Checked)
+                {
+                    clientsComboBox.DataSource = context.Companies.ToList();
+                    clientsComboBox.DisplayMember = "Title";
+                    clientsComboBox.ValueMember = "ID";
+                }
+                if (radioButtonIndividual.Checked)
+                {
+                    var result = context.People.AsEnumerable().Select(p => new { Name = p.Name + " " + p.Surname, Id = p.ID }).ToList();
+                    clientsComboBox.DataSource = result;
+                    clientsComboBox.DisplayMember = "Name";
+                    clientsComboBox.ValueMember = "ID";
+                }
+            }
+        }
+
+        private void clientsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (var context = new CarRentalSystemDatabaseEntities())
+            {
+                if (clientsComboBox.SelectedIndex != -1)
+                {
+                    clientsComboBox.ValueMember = "ID";
+                    Client client = context.Clients.FirstOrDefault(c => c.ID == (int)clientsComboBox.SelectedValue);
+                    Person person = context.People.FirstOrDefault(p => p.ID == client.ID);
+                    Company company = context.Companies.FirstOrDefault(comp => comp.ID == client.ID);
+
+                    if (client != null)
+                    {
+                        PhonetextBox.Text = client.Phone;
+                        AddresstextBox.Text = client.Address;
+                        EmailtextBox.Text = client.E_mail;
+                        if (person != null)
+                        {
+                            RentCarNameTextBox.Text = person.Name + person.Surname;
+                        }
+                        else if (company != null) companyCodeTextBox.Text = company.Code;
+                    }
+                }
+            }
         }
     }
 }

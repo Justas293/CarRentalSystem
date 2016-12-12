@@ -48,6 +48,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.companyCodeTextBox = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clientsComboBox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -178,7 +180,7 @@
             // radioButtonCompany
             // 
             this.radioButtonCompany.AutoSize = true;
-            this.radioButtonCompany.Location = new System.Drawing.Point(37, 24);
+            this.radioButtonCompany.Location = new System.Drawing.Point(37, 12);
             this.radioButtonCompany.Name = "radioButtonCompany";
             this.radioButtonCompany.Size = new System.Drawing.Size(69, 17);
             this.radioButtonCompany.TabIndex = 18;
@@ -190,13 +192,14 @@
             // 
             this.radioButtonIndividual.AutoSize = true;
             this.radioButtonIndividual.Checked = true;
-            this.radioButtonIndividual.Location = new System.Drawing.Point(207, 24);
+            this.radioButtonIndividual.Location = new System.Drawing.Point(207, 12);
             this.radioButtonIndividual.Name = "radioButtonIndividual";
             this.radioButtonIndividual.Size = new System.Drawing.Size(70, 17);
             this.radioButtonIndividual.TabIndex = 19;
             this.radioButtonIndividual.TabStop = true;
             this.radioButtonIndividual.Text = "Individual";
             this.radioButtonIndividual.UseVisualStyleBackColor = true;
+            this.radioButtonIndividual.CheckedChanged += new System.EventHandler(this.radioButtonIndividual_CheckedChanged);
             // 
             // label4
             // 
@@ -219,11 +222,31 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // clientsComboBox
+            // 
+            this.clientsComboBox.FormattingEnabled = true;
+            this.clientsComboBox.Location = new System.Drawing.Point(116, 35);
+            this.clientsComboBox.Name = "clientsComboBox";
+            this.clientsComboBox.Size = new System.Drawing.Size(168, 21);
+            this.clientsComboBox.TabIndex = 22;
+            this.clientsComboBox.SelectedIndexChanged += new System.EventHandler(this.clientsComboBox_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(38, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Existing client:";
+            // 
             // RentCarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 328);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.clientsComboBox);
             this.Controls.Add(this.companyCodeTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.radioButtonIndividual);
@@ -271,5 +294,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox companyCodeTextBox;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox clientsComboBox;
     }
 }
