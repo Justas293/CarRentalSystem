@@ -139,6 +139,7 @@ namespace CarRentalSystem
             if (string.IsNullOrEmpty(RentCarNameTextBox.Text))
             {
                 errorProvider1.SetError(RentCarNameTextBox, "Please enter client name!");
+                e.Cancel = true;
             }
             else
             if (radioButtonIndividual.Checked)
@@ -146,7 +147,9 @@ namespace CarRentalSystem
                 if (!RentCarNameTextBox.Text.Contains(" "))
                 {
                     errorProvider1.SetError(RentCarNameTextBox, "Please enter your surname!");
-                }else
+                    e.Cancel = true;
+                }
+                else
                 {
                     errorProvider1.SetError(RentCarNameTextBox, null);
                 }
@@ -164,6 +167,7 @@ namespace CarRentalSystem
             if (!int.TryParse(companyCodeTextBox.Text, out parsedValue))
             {
                 errorProvider1.SetError(companyCodeTextBox, "Code must contain numbers only!");
+                e.Cancel = true;
             }
             else
             {
@@ -177,6 +181,7 @@ namespace CarRentalSystem
             if (!int.TryParse(PhonetextBox.Text, out parsedValue) || PhonetextBox.TextLength > 9 || PhonetextBox.TextLength < 9)
             {
                 errorProvider1.SetError(PhonetextBox, "Invalid phone number!");
+                e.Cancel = true;
             }
             else
             {
@@ -189,6 +194,7 @@ namespace CarRentalSystem
             if (!new EmailAddressAttribute().IsValid(EmailtextBox.Text))
             {
                 errorProvider1.SetError(EmailtextBox, "Invalid e-mail address!");
+                e.Cancel = true;
             }
             else
             {
@@ -201,6 +207,7 @@ namespace CarRentalSystem
             if (string.IsNullOrEmpty(AddresstextBox.Text))
             {
                 errorProvider1.SetError(AddresstextBox, "Please enter client address!");
+                e.Cancel = true;
             }
             else errorProvider1.SetError(AddresstextBox, null);
         }
