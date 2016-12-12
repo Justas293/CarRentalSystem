@@ -584,5 +584,22 @@ namespace CarRentalSystem
             bodyComboBox.SelectedIndex = -1;
             PopulateCars();
         }
+
+        private void showClientInfoButton_Click(object sender, EventArgs e)
+        {
+            using (var context = new CarRentalSystemDatabaseEntities())
+            {
+                Client cl = context.Clients.FirstOrDefault(c => c.ID == (int)ClientslistBox.SelectedValue);
+                if (cl == null)
+                {
+                    MessageBox.Show("Please select client!");
+                }
+                else
+                MessageBox.Show(ClientslistBox.GetItemText(ClientslistBox.SelectedItem) + Environment.NewLine +
+                                cl.Address + Environment.NewLine +
+                                cl.Phone + Environment.NewLine +
+                                cl.E_mail);
+            }
+        }
     }
 }
