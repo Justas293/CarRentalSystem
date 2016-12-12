@@ -447,7 +447,7 @@ namespace CarRentalSystem
             using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
             {
                 var results_client = (from client in context.Clients
-                                      where client.Person.Surname.Contains(clientSearchBox.Text) || client.Company.Title.Contains(clientSearchBox.Text)
+                                      where client.Person.Surname.Contains(clientSearchBox.Text) || client.Person.Name.Contains(clientSearchBox.Text) || client.Company.Title.Contains(clientSearchBox.Text)
                                       select new
                                       {
                                           ID = client.ID,

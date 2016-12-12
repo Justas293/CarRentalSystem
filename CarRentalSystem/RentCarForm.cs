@@ -18,13 +18,14 @@ namespace CarRentalSystem
         {
             InitializeComponent();
             examplarVIN = vin;
+            
             using (var context = new CarRentalSystemDatabaseEntities()) {
                 if (radioButtonCompany.Checked)
                 {
                     clientsComboBox.DataSource = context.Companies.ToList();
                     clientsComboBox.DisplayMember = "Title";
                     clientsComboBox.ValueMember = "ID";
-                    clientsComboBox.SelectedIndex = -1;
+                    clientsComboBox.SelectedItem = null;
                 }
                 if (radioButtonIndividual.Checked)
                 {
@@ -32,11 +33,20 @@ namespace CarRentalSystem
                     clientsComboBox.DataSource = result;
                     clientsComboBox.DisplayMember = "Name";
                     clientsComboBox.ValueMember = "Id";
-                    clientsComboBox.SelectedIndex = -1;
+                    clientsComboBox.SelectedItem = null;
                 }
             }
+            ClearTextFields();   
         }
 
+        private void ClearTextFields()
+        {
+            PhonetextBox.Text = "";
+            AddresstextBox.Text = "";
+            EmailtextBox.Text = "";
+            RentCarNameTextBox.Text = "";
+            companyCodeTextBox.Text = "";
+        }
        
         private void Rentbutton_Click(object sender, EventArgs e)
         {
@@ -213,13 +223,15 @@ namespace CarRentalSystem
                     clientsComboBox.ValueMember = "ID";
                 }
             }
+            clientsComboBox.SelectedItem = null;
+            ClearTextFields();
         }
 
         private void clientsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             using (var context = new CarRentalSystemDatabaseEntities())
             {
-                if (clientsComboBox.SelectedIndex != -1)
+                if (clientsComboBox.SelectedItem != null)
                 {
                     clientsComboBox.ValueMember = "ID";
                     Client client = context.Clients.FirstOrDefault(c => c.ID == (int)clientsComboBox.SelectedValue);
@@ -233,12 +245,21 @@ namespace CarRentalSystem
                         EmailtextBox.Text = client.E_mail;
                         if (person != null)
                         {
-                            RentCarNameTextBox.Text = person.Name + person.Surname;
+                            RentCarNameTextBox.Text = person.Name + " " + person.Surname;
                         }
-                        else if (company != null) companyCodeTextBox.Text = company.Code;
+                        else if (company != null)
+                        {
+                            companyCodeTextBox.Text = company.Code;
+                            RentCarNameTextBox.Text = company.Title;
+                        }
                     }
                 }
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
         }
     }
 }
