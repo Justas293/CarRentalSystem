@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data.Entity;
 
 namespace CarRentalSystem
 {
@@ -35,7 +36,7 @@ namespace CarRentalSystem
             PopulateTopClients();
         }
 
-        private void PopulateTopClients() //LINQ Join , Group by
+        private void PopulateTopClients() //LINQ Join , Group by, Aggregate
         {
             using (var context = new CarRentalSystemDatabaseEntities())
             {
@@ -47,6 +48,25 @@ namespace CarRentalSystem
                               select new { row = grp.Key.Person.Name + " " + grp.Key.Person.Surname + grp.Key.Company.Title + " Number of rents: " + numberOfRents}).ToList();
                 topClientsListBox.DataSource = results;
                 topClientsListBox.DisplayMember = "row";
+
+                var results2 = (from c in context.Clients
+                                join r in context.Rents on c.ID equals r.ClientID
+                                join examplar in context.Examplars on r.ExamplarVIN equals examplar.VIN
+                                join car in context.Cars on examplar.CarID equals car.ID
+                                select new
+                                {
+                                    clientName = c.Person.Name + " " + c.Person.Surname + c.Company.Title,
+                                    priceOfRent = (DbFunctions.DiffDays(r.Pick_up, r.Return)+1) * car.Price
+                                }).ToList();
+
+                var prices = (from c in results2
+                              group c.priceOfRent by c.clientName into grp
+                              let fullPrice = grp.Aggregate((x, y) => x + y)
+                              orderby fullPrice descending
+                              select new { Name = grp.Key, Price = fullPrice, row = grp.Key + "---" + fullPrice.ToString() + "€" }).ToList();
+                rentSumsListBox.DataSource = prices;
+                rentSumsListBox.DisplayMember = "row";
+                               
             }
         }
 
@@ -391,7 +411,7 @@ namespace CarRentalSystem
                     Client client = context.Clients.FirstOrDefault(cl => cl.ID == (int)ClientslistBox.SelectedValue);
                     Person person = context.People.FirstOrDefault(p => p.ID == client.ID);
                     Company company = context.Companies.FirstOrDefault(com => com.ID == client.ID);
-                    int price = days * car.Price;
+                    int price = (days+1) * car.Price;
                     if (company != null)
                     {
                         clientname = client.Company.Title;
@@ -418,6 +438,7 @@ namespace CarRentalSystem
             }
             PopulateClientsTab();
             PopulateClientRents();
+            PopulateTopClients();
         }
 
         private void RemoveClientbutton_Click(object sender, EventArgs e)

@@ -32,7 +32,6 @@
             this.examplarSearchBox = new System.Windows.Forms.TextBox();
             this.addEquipmentToExamplarButton = new System.Windows.Forms.Button();
             this.EquipmentExamplarListBox = new System.Windows.Forms.ListBox();
-            this.FindEquipmentbutton = new System.Windows.Forms.Button();
             this.UpdateEquipmentbutton = new System.Windows.Forms.Button();
             this.RemoveEquipmentbutton = new System.Windows.Forms.Button();
             this.AddNewEquipmentbutton = new System.Windows.Forms.Button();
@@ -69,6 +68,9 @@
             this.Equipment_label = new System.Windows.Forms.Label();
             this.Examplars_listBox = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label5 = new System.Windows.Forms.Label();
+            this.rentSumsListBox = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.EquipmenttabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
             this.MaintabPage.SuspendLayout();
@@ -80,7 +82,6 @@
             this.EquipmenttabPage.Controls.Add(this.examplarSearchBox);
             this.EquipmenttabPage.Controls.Add(this.addEquipmentToExamplarButton);
             this.EquipmenttabPage.Controls.Add(this.EquipmentExamplarListBox);
-            this.EquipmenttabPage.Controls.Add(this.FindEquipmentbutton);
             this.EquipmenttabPage.Controls.Add(this.UpdateEquipmentbutton);
             this.EquipmenttabPage.Controls.Add(this.RemoveEquipmentbutton);
             this.EquipmenttabPage.Controls.Add(this.AddNewEquipmentbutton);
@@ -118,16 +119,6 @@
             this.EquipmentExamplarListBox.Name = "EquipmentExamplarListBox";
             this.EquipmentExamplarListBox.Size = new System.Drawing.Size(417, 121);
             this.EquipmentExamplarListBox.TabIndex = 6;
-            // 
-            // FindEquipmentbutton
-            // 
-            this.FindEquipmentbutton.Location = new System.Drawing.Point(465, 31);
-            this.FindEquipmentbutton.Name = "FindEquipmentbutton";
-            this.FindEquipmentbutton.Size = new System.Drawing.Size(86, 31);
-            this.FindEquipmentbutton.TabIndex = 5;
-            this.FindEquipmentbutton.Text = "Find...";
-            this.FindEquipmentbutton.UseVisualStyleBackColor = true;
-            this.FindEquipmentbutton.Click += new System.EventHandler(this.FindEquipmentbutton_Click);
             // 
             // UpdateEquipmentbutton
             // 
@@ -178,6 +169,9 @@
             // 
             // ClientstabPage
             // 
+            this.ClientstabPage.Controls.Add(this.label6);
+            this.ClientstabPage.Controls.Add(this.rentSumsListBox);
+            this.ClientstabPage.Controls.Add(this.label5);
             this.ClientstabPage.Controls.Add(this.topClientsListBox);
             this.ClientstabPage.Controls.Add(this.clientSearchBox);
             this.ClientstabPage.Controls.Add(this.showClientInfoButton);
@@ -496,6 +490,32 @@
             this.tabControl1.Size = new System.Drawing.Size(797, 531);
             this.tabControl1.TabIndex = 8;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(26, 290);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(85, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Number of rents:";
+            // 
+            // rentSumsListBox
+            // 
+            this.rentSumsListBox.FormattingEnabled = true;
+            this.rentSumsListBox.Location = new System.Drawing.Point(272, 306);
+            this.rentSumsListBox.Name = "rentSumsListBox";
+            this.rentSumsListBox.Size = new System.Drawing.Size(240, 82);
+            this.rentSumsListBox.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(269, 290);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Total price:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -522,7 +542,6 @@
         private System.Windows.Forms.TextBox examplarSearchBox;
         private System.Windows.Forms.Button addEquipmentToExamplarButton;
         private System.Windows.Forms.ListBox EquipmentExamplarListBox;
-        private System.Windows.Forms.Button FindEquipmentbutton;
         private System.Windows.Forms.Button UpdateEquipmentbutton;
         private System.Windows.Forms.Button RemoveEquipmentbutton;
         private System.Windows.Forms.Button AddNewEquipmentbutton;
@@ -559,6 +578,9 @@
         private System.Windows.Forms.Label Equipment_label;
         private System.Windows.Forms.ListBox Examplars_listBox;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox rentSumsListBox;
+        private System.Windows.Forms.Label label6;
     }
 }
 
