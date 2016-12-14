@@ -38,6 +38,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.AllEquipmentlistBox = new System.Windows.Forms.ListBox();
             this.ClientstabPage = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.rentSumsListBox = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.topClientsListBox = new System.Windows.Forms.ListBox();
             this.clientSearchBox = new System.Windows.Forms.TextBox();
             this.showClientInfoButton = new System.Windows.Forms.Button();
@@ -68,9 +71,6 @@
             this.Equipment_label = new System.Windows.Forms.Label();
             this.Examplars_listBox = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label5 = new System.Windows.Forms.Label();
-            this.rentSumsListBox = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.EquipmenttabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
             this.MaintabPage.SuspendLayout();
@@ -188,6 +188,32 @@
             this.ClientstabPage.TabIndex = 1;
             this.ClientstabPage.Text = "Clients";
             this.ClientstabPage.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(269, 290);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Total price:";
+            // 
+            // rentSumsListBox
+            // 
+            this.rentSumsListBox.FormattingEnabled = true;
+            this.rentSumsListBox.Location = new System.Drawing.Point(272, 306);
+            this.rentSumsListBox.Name = "rentSumsListBox";
+            this.rentSumsListBox.Size = new System.Drawing.Size(240, 82);
+            this.rentSumsListBox.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(26, 290);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "TOP 5 clients:";
             // 
             // topClientsListBox
             // 
@@ -489,32 +515,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(797, 531);
             this.tabControl1.TabIndex = 8;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 290);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Number of rents:";
-            // 
-            // rentSumsListBox
-            // 
-            this.rentSumsListBox.FormattingEnabled = true;
-            this.rentSumsListBox.Location = new System.Drawing.Point(272, 306);
-            this.rentSumsListBox.Name = "rentSumsListBox";
-            this.rentSumsListBox.Size = new System.Drawing.Size(240, 82);
-            this.rentSumsListBox.TabIndex = 10;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(269, 290);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Total price:";
             // 
             // MainForm
             // 

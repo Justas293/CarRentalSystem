@@ -46,7 +46,7 @@ namespace CarRentalSystem
                               let numberOfRents = grp.Count()
                               orderby numberOfRents descending
                               select new { row = grp.Key.Person.Name + " " + grp.Key.Person.Surname + grp.Key.Company.Title + " Number of rents: " + numberOfRents}).ToList();
-                topClientsListBox.DataSource = results;
+                topClientsListBox.DataSource = results.Take(5).ToList();
                 topClientsListBox.DisplayMember = "row";
 
                 var results2 = (from c in context.Clients
