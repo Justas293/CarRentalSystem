@@ -71,6 +71,8 @@
             this.Equipment_label = new System.Windows.Forms.Label();
             this.Examplars_listBox = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.carSearchBox = new System.Windows.Forms.TextBox();
+            this.eqExamplarsListBox = new System.Windows.Forms.ListBox();
             this.EquipmenttabPage.SuspendLayout();
             this.ClientstabPage.SuspendLayout();
             this.MaintabPage.SuspendLayout();
@@ -300,6 +302,8 @@
             // 
             // MaintabPage
             // 
+            this.MaintabPage.Controls.Add(this.eqExamplarsListBox);
+            this.MaintabPage.Controls.Add(this.carSearchBox);
             this.MaintabPage.Controls.Add(this.resetButton);
             this.MaintabPage.Controls.Add(this.updatePriceButton);
             this.MaintabPage.Controls.Add(this.removeExamplarButton);
@@ -516,6 +520,22 @@
             this.tabControl1.Size = new System.Drawing.Size(797, 531);
             this.tabControl1.TabIndex = 8;
             // 
+            // carSearchBox
+            // 
+            this.carSearchBox.Location = new System.Drawing.Point(289, 19);
+            this.carSearchBox.Name = "carSearchBox";
+            this.carSearchBox.Size = new System.Drawing.Size(307, 20);
+            this.carSearchBox.TabIndex = 19;
+            this.carSearchBox.TextChanged += new System.EventHandler(this.carSearchBox_TextChanged);
+            // 
+            // eqExamplarsListBox
+            // 
+            this.eqExamplarsListBox.FormattingEnabled = true;
+            this.eqExamplarsListBox.Location = new System.Drawing.Point(367, 284);
+            this.eqExamplarsListBox.Name = "eqExamplarsListBox";
+            this.eqExamplarsListBox.Size = new System.Drawing.Size(345, 108);
+            this.eqExamplarsListBox.TabIndex = 20;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -581,6 +601,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox rentSumsListBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox carSearchBox;
+        private System.Windows.Forms.ListBox eqExamplarsListBox;
     }
 }
 

@@ -622,5 +622,29 @@ namespace CarRentalSystem
                                 cl.E_mail);
             }
         }
+
+        private void carSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            using (CarRentalSystemDatabaseEntities context = new CarRentalSystemDatabaseEntities())
+            {
+                var equipments = from eq in context.Equipments
+                                 where eq.Title.Contains(carSearchBox.Text)
+                                 select eq;
+
+                var carExamplars = (from examp in context.Examplars
+                                    where examp.Equipments.Any(x=> x.Title.Contains(carSearchBox.Text))
+
+                                    select new
+                                    {
+                                        Vin = examp.VIN,
+                                        Row = " VIN: " + examp.VIN
+                                    }).ToList();
+
+                
+                eqExamplarsListBox.DataSource = carExamplars;
+                eqExamplarsListBox.DisplayMember = "Row";
+
+            }
+        }
     }
 }
